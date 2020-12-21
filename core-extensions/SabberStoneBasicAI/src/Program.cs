@@ -38,15 +38,24 @@ namespace SabberStoneBasicAI
 
 			// TEST BASIC AI
 
-			//OneTurn();
+			MyTest();
+
+			// OneTurn();
 			//FullGame();
 			//RandomGames();
 			//TestPOGame();
 			//TestFullGames();
-			TestTournament();
+			// TestTournament();
 
 			Console.WriteLine("Test ended!");
 			Console.ReadLine();
+		}
+
+		public static void MyTest()
+		{
+			Card card = Cards.FromName("War Golem");
+
+			// Console.WriteLine(card1 == card2);
 		}
 
 		public static void TestTournament()
