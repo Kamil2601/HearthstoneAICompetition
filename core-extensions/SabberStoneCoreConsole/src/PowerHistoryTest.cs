@@ -45,8 +45,8 @@ namespace SabberStoneCoreConsole
 					StateTransition(clone, game.PowerHistory);
 
 					InequalityFlags flag = Equals(game, clone);
-					if (CheckFlag(flag))
-						;
+					// if (CheckFlag(flag))
+					// 	;
 
 				} while (game.State != State.COMPLETE);
 			} while (true);

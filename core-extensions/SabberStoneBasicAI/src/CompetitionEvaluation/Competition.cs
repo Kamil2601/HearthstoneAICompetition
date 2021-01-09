@@ -99,8 +99,8 @@ namespace SabberStoneBasicAI.CompetitionEvaluation
 					}
 					file_written = true;
 				}
-				catch (Exception e)
-				{
+				catch (Exception)
+                {
 					Thread.Sleep(10);
 				}
 			}

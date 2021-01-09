@@ -49,11 +49,11 @@ namespace SabberStonePowerLog
 		public List<PowerGame> Parse(bool createJsonFile, bool createCleanLog)
 		{
 			List<PowerGame> powerGames = new List<PowerGame>();
-			PowerState currentPowerState = PowerState.Start;
-			PowerGame currentPowerGame = null;
+			// PowerState currentPowerState = PowerState.Start;
+			// PowerGame currentPowerGame = null;
 			PowerType currentPowerType = 0;
-			Dictionary<string, int> currentNameToIdDict;
-			PowerHistoryEntry currentPowerHistoryEntry = null;
+			// Dictionary<string, int> currentNameToIdDict;
+			// PowerHistoryEntry currentPowerHistoryEntry = null;
 			StringBuilder cleanLog = new StringBuilder();
 
 			string line;
