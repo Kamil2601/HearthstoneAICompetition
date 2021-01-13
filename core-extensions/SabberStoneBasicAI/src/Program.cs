@@ -53,9 +53,10 @@ namespace SabberStoneBasicAI
 
 		public static void MyTest()
 		{
-			Card card = Cards.FromName("War Golem");
+			Card card1 = Cards.FromName("Poisoned Blade");
+			Card card2 = Cards.FromName("Poisoned Blade");
 
-			// Console.WriteLine(card1 == card2);
+			Console.WriteLine(card1 == card2);
 		}
 
 		public static void TestTournament()

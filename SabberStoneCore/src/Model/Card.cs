@@ -19,6 +19,7 @@ using SabberStoneCore.Enchants;
 using SabberStoneCore.Enums;
 using System;
 using SabberStoneCore.Loader;
+using SabberStoneCore.Model.Helpers;
 
 namespace SabberStoneCore.Model
 {
@@ -83,6 +84,43 @@ namespace SabberStoneCore.Model
 		public bool Overkill { get; }
 
 		public bool TwinSpell { get; }
+
+		#region Thesis
+		private int baseAtk;
+		private int baseHealth;
+		private int baseCost;
+		public AttributesChange AttributesChange { get; set; }
+
+		public void ResetAttributesChange()
+		{
+			ATK = baseAtk;
+			Cost = baseCost;
+
+			if (Tags.ContainsKey(GameTag.DURABILITY))
+				Tags[GameTag.DURABILITY] = baseHealth;
+			else
+				Health = baseHealth;
+
+			AttributesChange.Reset();
+		}
+
+		public void SetAttributesChange(AttributesChange attributesChange = null)
+		{
+			ResetAttributesChange();
+
+			if (attributesChange != null)
+				AttributesChange = attributesChange;
+
+			ATK += AttributesChange.ATK;
+			Cost += AttributesChange.Cost;
+
+			if (Tags.ContainsKey(GameTag.DURABILITY))
+				Tags[GameTag.DURABILITY] += AttributesChange.Health;
+			else
+				Health += AttributesChange.Health;
+		}
+		#endregion
+
 		private Card()
 		{
 
@@ -394,6 +432,18 @@ namespace SabberStoneCore.Model
 				Text += " @spelldmg";
 				IsAffectedBySpellDamage = true;
 			}
+
+			#region Thesis
+
+			baseAtk = ATK;
+			baseCost = Cost;
+
+			if (Tags.ContainsKey(GameTag.DURABILITY))
+				baseHealth = Tags[GameTag.DURABILITY];
+			else
+				baseHealth = Health;
+
+			#endregion
 		}
 
 		internal void SetPlayRequirements(Dictionary<PlayReq, int> playReqs)
