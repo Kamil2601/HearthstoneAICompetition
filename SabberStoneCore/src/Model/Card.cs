@@ -101,7 +101,7 @@ namespace SabberStoneCore.Model
 			else
 				Health = baseHealth;
 
-			AttributesChange.Reset();
+			// AttributesChange.Reset();
 		}
 
 		public void SetAttributesChange(AttributesChange attributesChange = null)
@@ -118,6 +118,21 @@ namespace SabberStoneCore.Model
 				Tags[GameTag.DURABILITY] += AttributesChange.Health;
 			else
 				Health += AttributesChange.Health;
+		}
+
+		public void ChangeAttributes(int costChange, int healthChange = 0, int atkChange = 0)
+		{
+			Cost = Math.Max(0, baseCost + costChange);
+			ATK = Math.Max(0, baseAtk + atkChange);
+
+			if (Tags.ContainsKey(GameTag.DURABILITY))
+			{
+				Tags[GameTag.DURABILITY] = Math.Max(0, baseHealth - healthChange);
+			}
+			else
+			{
+				Health = Math.Max(0, baseHealth + healthChange);
+			}
 		}
 		#endregion
 

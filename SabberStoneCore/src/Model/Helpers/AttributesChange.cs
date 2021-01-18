@@ -8,6 +8,11 @@ namespace SabberStoneCore.Model.Helpers
         public int Cost { get; set; }
         // public int Durability { get; set; }
 
+        public AttributesChange()
+        {
+            
+        }
+
         public AttributesChange(Card card = null)
         {
             if (card != null)
@@ -36,6 +41,11 @@ namespace SabberStoneCore.Model.Helpers
             Health = 0;
             Cost = 0;
             // Durability = 0;
+        }
+
+        public void Apply()
+        {
+            Card.SetAttributesChange(this);
         }
     }
 }

@@ -38,17 +38,18 @@ namespace SabberStoneBasicAI
 
 			// TEST BASIC AI
 
-			MyTest();
+			// MyTest();
 
 			// OneTurn();
-			//FullGame();
-			//RandomGames();
-			//TestPOGame();
-			//TestFullGames();
+			FullGame();
+			// RandomGames();
+			// TestFullGames();
+
+			// TestPOGame();
 			// TestTournament();
 
 			Console.WriteLine("Test ended!");
-			Console.ReadLine();
+			// Console.ReadLine();
 		}
 
 		public static void MyTest()
@@ -314,8 +315,8 @@ namespace SabberStoneBasicAI
 				});
 			game.StartGame();
 
-			var aiPlayer1 = new AggroScore();
-			var aiPlayer2 = new AggroScore();
+			IScore aiPlayer1 = new AggroScore();
+			IScore aiPlayer2 = new AggroScore();
 
 			List<int> mulligan1 = aiPlayer1.MulliganRule().Invoke(game.Player1.Choice.Choices.Select(p => game.IdEntityDic[p]).ToList());
 			List<int> mulligan2 = aiPlayer2.MulliganRule().Invoke(game.Player2.Choice.Choices.Select(p => game.IdEntityDic[p]).ToList());
@@ -353,6 +354,8 @@ namespace SabberStoneBasicAI
 						}
 					}
 				}
+
+				Console.ReadLine();
 
 				// Random mode for Player 2
 				Console.WriteLine($"- Player 2 - <{game.CurrentPlayer.Name}> ---------------------------");
