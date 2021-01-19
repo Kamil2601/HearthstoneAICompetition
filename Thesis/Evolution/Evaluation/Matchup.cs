@@ -1,14 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using SabberStoneBasicAI.Meta;
 using SabberStoneBasicAI.Nodes;
 using SabberStoneCore.Config;
 using SabberStoneCore.Enums;
 using SabberStoneCore.Model;
 using SabberStoneCore.Tasks.PlayerTasks;
 
-namespace Thesis.Evaluation
+namespace Thesis.Evolution.Evaluation
 {
     public class Matchup
     {

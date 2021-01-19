@@ -1,8 +1,9 @@
 using System;
+using Thesis.Evolution.Models;
 
 namespace Thesis.Evolution.Crossovers
 {
-    public class TwoPointCrossover : Crossover
+    public class TwoPointCrossover : ICrossover
     {
         Random random = new Random();
 
@@ -28,6 +29,11 @@ namespace Thesis.Evolution.Crossovers
             }
 
             return (child1, child2);
+        }
+
+        public void Crossover(Population population)
+        {
+            throw new NotImplementedException();
         }
     }
 }

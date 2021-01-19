@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Thesis.Evaluation
+namespace Thesis.Evolution.Evaluation
 {
     public class Tournament
     {

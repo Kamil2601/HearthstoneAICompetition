@@ -1,10 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Thesis.Evolution.Models;
 
 namespace Thesis.Evolution.Selections
 {
-    public class TournamentSelection: Selection
+    public class TournamentSelection: ISelection
     {
         private int tournamentSize;
         private Random random = new Random();

@@ -2,14 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace Thesis.Evolution
+namespace Thesis.Evolution.Models
 {
     public class Chromosome
     {
         //     MINIONS / WEAPONS      |    SPELLS
         // [cost, health, attack, ... , cost, cost, ...]
         public int[] Genes { get; set; }
-        public double Score { get; set; } = double.MaxValue;
+        public double Score { get; set; } = -1;
         private readonly int length;
         private readonly int minions;
         private readonly int spells;

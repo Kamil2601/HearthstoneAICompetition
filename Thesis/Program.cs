@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using SabberStoneBasicAI.Meta;
 using SabberStoneBasicAI.Score;
 using SabberStoneCore.Enums;
-using SabberStoneCore.Model;
-using Thesis.Evaluation;
+using Thesis.Evolution.Evaluation;
 using Thesis.MyDecks;
 
 namespace Thesis

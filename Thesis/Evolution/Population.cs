@@ -2,7 +2,8 @@ using System.Collections.Generic;
 using System.Linq;
 using SabberStoneCore.Enums;
 using SabberStoneCore.Model;
-using Thesis.Evaluation;
+using Thesis.Evolution.Evaluation;
+using Thesis.Evolution.Models;
 
 namespace Thesis.Evolution
 {
@@ -12,6 +13,7 @@ namespace Thesis.Evolution
         public List<Card> Spells { get; private set; }
         public int ChromosomeLength { get; private set; }
         public List<Chromosome> Individuals { get; set; }
+        public int Count => Individuals.Count;
 
         public Population(List<Player> players)
         {
@@ -54,7 +56,5 @@ namespace Thesis.Evolution
                 Spells[i].ChangeAttributes(costChange);
             }
         }
-
-
     }
 }
