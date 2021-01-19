@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using SabberStoneBasicAI.Score;
 using SabberStoneCore.Enums;
+using Thesis.Evolution;
 using Thesis.Evolution.Evaluation;
 using Thesis.Evolution.Models;
+using Thesis.Evolution.NextGenerations;
 using Thesis.MyDecks;
 
 namespace Thesis
@@ -11,14 +14,43 @@ namespace Thesis
     {
         static void Main(string[] args)
         {
-            Population population = new Population(10, 10, 5);
+            RunExperiment1();
+        }
 
-            Console.WriteLine(population.Count);
-            
-            foreach (var chromosome in population)
+        static void RunExperiment1()
+        {
+            Player player1 = new Player()
             {
-                Console.WriteLine(chromosome);
-            }
+                Name = "Hunter-Aggro",
+                HeroClass = CardClass.HUNTER,
+                AI = new AggroScore(),
+                Deck = BasicDecks.Hunter
+            };
+
+            Player player2 = new Player()
+            {
+                Name = "Mage-Control",
+                HeroClass = CardClass.MAGE,
+                AI = new ControlScore(),
+                Deck = BasicDecks.Mage
+            };
+
+            Player player3 = new Player()
+            {
+                Name = "Druid-Control",
+                HeroClass = CardClass.DRUID,
+                AI = new ControlScore(),
+                Deck = BasicDecks.Druid
+            };
+
+            var players = new List<Player>() {player1, player2, player3};
+
+            IEvaluation evaluation = new Tournament();
+            INextGeneration nextGeneration = new Experiment1();
+
+            Algorithm algorithm = new Algorithm(players, evaluation, nextGeneration);
+
+            algorithm.Evolve(10);
         }
 
         static void MatchupTest()
