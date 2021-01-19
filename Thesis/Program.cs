@@ -2,6 +2,7 @@
 using SabberStoneBasicAI.Score;
 using SabberStoneCore.Enums;
 using Thesis.Evolution.Evaluation;
+using Thesis.Evolution.Models;
 using Thesis.MyDecks;
 
 namespace Thesis

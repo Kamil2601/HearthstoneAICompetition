@@ -1,14 +1,14 @@
 using System;
 using System.Collections.Generic;
+using Thesis.Evolution.Models;
 
 namespace Thesis.Evolution.Evaluation
 {
-    public class Tournament
+    public class Tournament: IEvaluation
     {
-        public List<Player> Players { get; set; }
-        public double Evaluate()
+        public double Evaluate(List<Player> players)
         {
-            var count = Players.Count;
+            var count = players.Count;
 
             double sum = 0;
 
@@ -16,7 +16,7 @@ namespace Thesis.Evolution.Evaluation
             {
                 for (int j=i+1; j<count; j++)
                 {
-                    var matchup = new Matchup(Players[i], Players[j]);
+                    var matchup = new Matchup(players[i], players[j]);
                     matchup.PlayMatchup();
 
                     var winRate = matchup.P1Wins/matchup.GamesPlayed;

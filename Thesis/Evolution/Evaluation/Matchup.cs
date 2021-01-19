@@ -6,6 +6,7 @@ using SabberStoneCore.Config;
 using SabberStoneCore.Enums;
 using SabberStoneCore.Model;
 using SabberStoneCore.Tasks.PlayerTasks;
+using Thesis.Evolution.Models;
 
 namespace Thesis.Evolution.Evaluation
 {

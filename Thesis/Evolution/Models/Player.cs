@@ -3,7 +3,7 @@ using SabberStoneBasicAI.Score;
 using SabberStoneCore.Enums;
 using SabberStoneCore.Model;
 
-namespace Thesis.Evolution.Evaluation
+namespace Thesis.Evolution.Models
 {
     public class Player
     {

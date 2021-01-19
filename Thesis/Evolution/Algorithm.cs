@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using SabberStoneCore.Model.Helpers;
 using Thesis.Evolution.Crossovers;
-using Thesis.Evolution.Evaluation;
+using Thesis.Evolution.Models;
 using Thesis.Evolution.Mutations;
 using Thesis.Evolution.Selections;
 
