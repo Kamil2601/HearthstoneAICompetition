@@ -5,6 +5,7 @@ namespace Thesis.Evolution.Selections
 {
     public interface ISelection
     {
-        List<Chromosome> Select(List<Chromosome> individuals);
+        Population Select(Population population);
+        Chromosome SelectOne(Population population);
     }
 }

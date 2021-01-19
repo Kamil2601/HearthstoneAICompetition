@@ -1,10 +1,10 @@
-using System;
+﻿using System;
 using System.Linq;
 using Thesis.Evolution.Models;
 
 namespace Thesis.Evolution.Mutations
 {
-    public class Mutation1 : IMutation
+    public class Mutation : IMutation
     {
         Random random = new Random();
 
@@ -23,8 +23,7 @@ namespace Thesis.Evolution.Mutations
         {
             int mutationCount = (int)Math.Round(population.Count * (0.2));
 
-            var toMutate = population.Individuals
-                .OrderBy(_ => random.NextDouble()).Take(mutationCount);
+            var toMutate = population.OrderBy(_ => random.NextDouble()).Take(mutationCount);
 
             foreach (var chromosome in toMutate)
                 Mutate(chromosome);

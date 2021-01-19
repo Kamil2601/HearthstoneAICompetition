@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Thesis.Evolution.Models
 {
@@ -15,12 +16,15 @@ namespace Thesis.Evolution.Models
         private readonly int spells;
         
 
-        public Chromosome(int minions, int spells)
+        public Chromosome(int minions, int spells, bool randomInit = false)
         {
             this.spells = spells;
             this.minions = minions;
             length = 3 * minions + spells;
             Genes = new int[length];
+
+            if (randomInit)
+                RandomInitialize();
         }
 
         public Chromosome(Chromosome other): this(other.minions, other.spells)
@@ -45,6 +49,12 @@ namespace Thesis.Evolution.Models
             {
                 Genes[i] = random.Next(-3, 3);
             }
+        }
+
+        public override string ToString()
+        {
+            string genes = String.Join(",",Genes.Select(g => g.ToString()));
+            return $"({minions}, {spells})[{genes}]";
         }
     }
 }

@@ -11,12 +11,15 @@ namespace Thesis
     {
         static void Main(string[] args)
         {
-            int x = 1, y = 2;
-            (x, y) = (y, x);
-            Console.WriteLine((x, y));
+            Population population = new Population(10, 10, 5);
+
+            Console.WriteLine(population.Count);
+            
+            foreach (var chromosome in population)
+            {
+                Console.WriteLine(chromosome);
+            }
         }
-
-
 
         static void MatchupTest()
         {

@@ -31,7 +31,7 @@ namespace Thesis.Evolution.Crossovers
             return (child1, child2);
         }
 
-        public void Crossover(Population population)
+        public Population Crossover(Population population)
         {
             throw new NotImplementedException();
         }
