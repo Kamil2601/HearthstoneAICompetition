@@ -14,7 +14,13 @@ namespace Thesis
     {
         static void Main(string[] args)
         {
-            RunExperiment1();
+            // RunExperiment1();
+            Chromosome c1 = new Chromosome(1,1,true);
+            Chromosome c2 = c1.Copy();
+
+            Console.WriteLine(c1);
+            Console.WriteLine(c2);
+            Console.WriteLine(c1 == c2);
         }
 
         static void RunExperiment1()

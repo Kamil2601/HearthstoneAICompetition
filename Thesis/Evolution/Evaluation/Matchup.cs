@@ -18,8 +18,8 @@ namespace Thesis.Evolution.Evaluation
         public int GamesPlayed { get; private set; }
         public int P1Wins { get; private set; }
         public int P2Wins { get; private set; }
-        public int MaxDepth { get; set; } = 10;
-        public int MaxWidth { get; set; } = 500;
+        public int MaxDepth { get; set; } = 2;
+        public int MaxWidth { get; set; } = 4;
         public int GamesForMatchup { get; set; } = 10;
         public int ExceptionsThrown { get; set; }
 
@@ -108,6 +108,8 @@ namespace Thesis.Evolution.Evaluation
         public void PlayMatchup()
         {
             Reset();
+
+            Console.WriteLine($"{Player1.Name} vs {Player2.Name}");
 
             for (int i=0; i<GamesForMatchup; i++)
             {

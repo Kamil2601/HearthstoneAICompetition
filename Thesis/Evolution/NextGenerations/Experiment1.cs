@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Thesis.Evolution.Crossovers;
 using Thesis.Evolution.Models;
+using Thesis.Evolution.Mutations;
 using Thesis.Evolution.Selections;
 
 namespace Thesis.Evolution.NextGenerations
@@ -13,6 +14,7 @@ namespace Thesis.Evolution.NextGenerations
         public double MutationProbability { get; set; } = 0.05;
         public ISelection Selection { get; set; } = new TournamentSelection(3);
         public ICrossover Crossover { get; set; } = new TwoPointCrossover();
+        public IMutation Mutation { get; set; } = new MutationExperiment1();
         public Population Evolve(Population population)
         {
             var crossoverSize = Math.Round(population.Size*CrossoverRate);
@@ -39,6 +41,8 @@ namespace Thesis.Evolution.NextGenerations
 
                 result.Add(parent);
             }
+
+            Mutation.Mutate(result);
 
             return result;
         }

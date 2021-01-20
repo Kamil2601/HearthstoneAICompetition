@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using SabberStoneCore.Enums;
 using SabberStoneCore.Model;
@@ -19,6 +20,7 @@ namespace Thesis.Evolution
         public List<Card> Minions { get; private set; }
         public List<Card> Spells { get; private set; }
         private const int populationSize = 100;
+        Random random = new Random();
 
         public Algorithm(List<Player> players, IEvaluation evaluation,
             INextGeneration nextGeneration)
@@ -69,8 +71,14 @@ namespace Thesis.Evolution
         {
             foreach (var chromosome in Population)
             {
-                Apply(chromosome);
-                chromosome.Score = Evaluation.Evaluate(Players);
+                Console.WriteLine(chromosome);
+                
+                if (chromosome.Score == -1)
+                {
+                    Apply(chromosome);
+                    // chromosome.Score = Evaluation.Evaluate(Players);
+                    chromosome.Score = random.NextDouble();
+                }   
             }
         }
 

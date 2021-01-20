@@ -62,7 +62,7 @@ namespace Thesis.Evolution.Selections
 
             var winner = bestIndividuals[random.Next(bestIndividuals.Count)];
 
-            return winner;
+            return winner.Copy();
         }
     }
 }

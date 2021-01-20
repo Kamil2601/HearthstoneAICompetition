@@ -51,6 +51,26 @@ namespace Thesis.Evolution.Models
             }
         }
 
+        public int Magnitude
+        {
+            get
+            {
+                int result = 0;
+
+                for (int i = 0; i < minions; i++)
+                {
+                    result += 2 * Math.Abs(Genes[3 * i]) + Math.Abs(Genes[3 * i + 1]) + Math.Abs(Genes[3 * i + 2]);
+                }
+
+                for (int i = 0; i < spells; i++)
+                {
+                    result += 2 * Math.Abs(Genes[3 * minions + i]);
+                }
+
+                return result;
+            }
+        }
+
         public override string ToString()
         {
             string genes = String.Join(",",Genes.Select(g => g.ToString()));

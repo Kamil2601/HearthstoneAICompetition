@@ -4,7 +4,7 @@ using Thesis.Evolution.Models;
 
 namespace Thesis.Evolution.Mutations
 {
-    public class Mutation : IMutation
+    public class MutationExperiment1 : IMutation
     {
         Random random = new Random();
 
