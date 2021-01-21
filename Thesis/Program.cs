@@ -16,12 +16,13 @@ namespace Thesis
         static void Main(string[] args)
         {
             // RunExperiment1();
+            MatchupTest();
 
-            var card = Cards.FromName("Fiery War Axe");
+            // var card = Cards.FromName("Fiery War Axe");
 
-            card.ChangeAttributes(1, 1, 1);
+            // card.ChangeAttributes(1, 1, 1);
 
-            card.ChangeAttributes(0,0,0);
+            // card.ChangeAttributes(0,0,0);
         }
 
         static void RunExperiment1()
@@ -57,17 +58,17 @@ namespace Thesis
 
             Algorithm algorithm = new Algorithm(players, evaluation, nextGeneration);
 
-            algorithm.Evolve(15);
+            // algorithm.Evolve(1);
         }
 
         static void MatchupTest()
         {
             Player player1 = new Player()
             {
-                Name = "Hunter-Aggro",
-                HeroClass = CardClass.HUNTER,
+                Name = "Druid-Control",
+                HeroClass = CardClass.DRUID,
                 AI = new AggroScore(),
-                Deck = BasicDecks.Hunter
+                Deck = BasicDecks.Druid
             };
 
             Player player2 = new Player()
@@ -79,6 +80,10 @@ namespace Thesis
             };
 
             Matchup matchup = new Matchup(player1, player2);
+
+            matchup.MaxDepth = 2;
+            matchup.MaxWidth = 50;
+            matchup.GamesForMatchup = 10;
 
             // matchup.GamesForMatchup = 20;
 

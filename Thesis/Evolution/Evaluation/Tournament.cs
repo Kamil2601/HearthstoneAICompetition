@@ -19,7 +19,7 @@ namespace Thesis.Evolution.Evaluation
                     var matchup = new Matchup(players[i], players[j]);
                     matchup.PlayMatchup();
 
-                    var winRate = matchup.P1Wins/matchup.GamesPlayed;
+                    double winRate = (double)matchup.P1Wins/(double)matchup.GamesPlayed;
 
                     sum += (winRate - 0.5) * (winRate - 0.5);
                 }

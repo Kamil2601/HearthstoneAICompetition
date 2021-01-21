@@ -25,6 +25,7 @@ using SabberStoneBasicAI.Score;
 using SabberStoneBasicAI.AIAgents;
 using SabberStoneBasicAI.PartialObservation;
 using SabberStoneBasicAI.CompetitionEvaluation;
+using System.Threading;
 
 namespace SabberStoneBasicAI
 {
@@ -41,7 +42,14 @@ namespace SabberStoneBasicAI
 			// MyTest();
 
 			// OneTurn();
+			Stopwatch stopwatch = new Stopwatch();
+			stopwatch.Start();
 			FullGame();
+			stopwatch.Stop();
+
+			TimeSpan time = stopwatch.Elapsed;
+
+			Console.WriteLine(time);
 			// RandomGames();
 			// TestFullGames();
 
@@ -355,7 +363,7 @@ namespace SabberStoneBasicAI
 					}
 				}
 
-				Console.ReadLine();
+				// Console.ReadLine();
 
 				// Random mode for Player 2
 				Console.WriteLine($"- Player 2 - <{game.CurrentPlayer.Name}> ---------------------------");

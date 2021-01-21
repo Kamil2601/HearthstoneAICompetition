@@ -19,7 +19,7 @@ namespace Thesis.Evolution.Export
             using (StreamWriter file = new StreamWriter(ScoreFile, true))
             {
                 file.WriteLine($"{generation};{population.MinScore};{population.MaxScore};" +
-                    "{population.AvgScore};{population.BestChromosomeMagnitude}");
+                    $"{population.AvgScore};{population.BestChromosomeMagnitude}");
             }
 
             using (StreamWriter file = new StreamWriter(PopulationsFile, true))
