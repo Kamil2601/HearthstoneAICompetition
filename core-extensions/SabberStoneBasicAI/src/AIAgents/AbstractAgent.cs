@@ -9,8 +9,8 @@ namespace SabberStoneBasicAI.AIAgents
 	abstract class AbstractAgent
 
 	{
-		public List<Card> preferedDeck;
-		public CardClass preferedHero;
+		// public List<Card> preferedDeck;
+		// public CardClass preferedHero;
 
 
 		public abstract void InitializeAgent();

@@ -18,6 +18,7 @@ using SabberStoneCore.Model;
 using SabberStoneCore.Model.Entities;
 using SabberStoneCore.Tasks.PlayerTasks;
 using SabberStoneBasicAI.Score;
+using System;
 
 namespace SabberStoneBasicAI.Nodes
 {
@@ -124,7 +125,7 @@ namespace SabberStoneBasicAI.Nodes
 					.Take(maxWidth)
 					.ToDictionary(p => p.Key, p => p.Value);
 
-				//Console.WriteLine($"Depth: {i + 1} --> {depthNodes.Count}/{nextDepthNodes.Count} options! [SOLUTIONS:{endTurnNodes.Count}]");
+				// Console.WriteLine($"Depth: {i + 1} --> {depthNodes.Count}/{nextDepthNodes.Count} options! [SOLUTIONS:{endTurnNodes.Count}]");
 			}
 			return endTurnNodes;
 		}

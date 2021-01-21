@@ -19,7 +19,6 @@ using SabberStoneCore.Enchants;
 using SabberStoneCore.Enums;
 using System;
 using SabberStoneCore.Loader;
-using SabberStoneCore.Model.Helpers;
 
 namespace SabberStoneCore.Model
 {
@@ -89,36 +88,6 @@ namespace SabberStoneCore.Model
 		private int baseAtk;
 		private int baseHealth;
 		private int baseCost;
-		public AttributesChange AttributesChange { get; set; }
-
-		public void ResetAttributesChange()
-		{
-			ATK = baseAtk;
-			Cost = baseCost;
-
-			if (Tags.ContainsKey(GameTag.DURABILITY))
-				Tags[GameTag.DURABILITY] = baseHealth;
-			else
-				Health = baseHealth;
-
-			// AttributesChange.Reset();
-		}
-
-		public void SetAttributesChange(AttributesChange attributesChange = null)
-		{
-			ResetAttributesChange();
-
-			if (attributesChange != null)
-				AttributesChange = attributesChange;
-
-			ATK += AttributesChange.ATK;
-			Cost += AttributesChange.Cost;
-
-			if (Tags.ContainsKey(GameTag.DURABILITY))
-				Tags[GameTag.DURABILITY] += AttributesChange.Health;
-			else
-				Health += AttributesChange.Health;
-		}
 
 		public void ChangeAttributes(int costChange, int healthChange = 0, int atkChange = 0)
 		{
@@ -127,7 +96,7 @@ namespace SabberStoneCore.Model
 
 			if (Tags.ContainsKey(GameTag.DURABILITY))
 			{
-				Tags[GameTag.DURABILITY] = Math.Max(0, baseHealth - healthChange);
+				Tags[GameTag.DURABILITY] = Math.Max(0, baseHealth + healthChange);
 			}
 			else
 			{

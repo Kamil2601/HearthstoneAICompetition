@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Thesis.Evolution.Models
 {
@@ -28,6 +29,24 @@ namespace Thesis.Evolution.Models
         {
             for (int i=0; i<Size; i++)
                 Add(new Chromosome(Minions, Spells, true));
+        }
+
+        public double MaxScore => this.Select(chromosome => chromosome.Score)
+            .OrderByDescending(score => score).First();
+
+        public double MinScore => this.Select(chromosome => chromosome.Score)
+            .OrderBy(score => score).First();
+
+        public double AvgScore => this.Average(chromosome => chromosome.Score);
+
+        public double BestChromosomeMagnitude
+        {
+            get
+            {
+                var best = this.OrderBy(chrom => chrom.Score).First();
+
+                return best.Magnitude;
+            }
         }
     }
 }

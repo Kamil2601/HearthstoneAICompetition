@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using SabberStoneBasicAI.Score;
 using SabberStoneCore.Enums;
+using SabberStoneCore.Model;
 using Thesis.Evolution;
 using Thesis.Evolution.Evaluation;
 using Thesis.Evolution.Models;
@@ -15,12 +16,12 @@ namespace Thesis
         static void Main(string[] args)
         {
             // RunExperiment1();
-            Chromosome c1 = new Chromosome(1,1,true);
-            Chromosome c2 = c1.Copy();
 
-            Console.WriteLine(c1);
-            Console.WriteLine(c2);
-            Console.WriteLine(c1 == c2);
+            var card = Cards.FromName("Fiery War Axe");
+
+            card.ChangeAttributes(1, 1, 1);
+
+            card.ChangeAttributes(0,0,0);
         }
 
         static void RunExperiment1()
@@ -56,7 +57,7 @@ namespace Thesis
 
             Algorithm algorithm = new Algorithm(players, evaluation, nextGeneration);
 
-            algorithm.Evolve(10);
+            algorithm.Evolve(15);
         }
 
         static void MatchupTest()

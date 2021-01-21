@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using SabberStoneCore.Enums;
 using SabberStoneCore.Model;
-using SabberStoneCore.Model.Helpers;
 using Thesis.Evolution.Evaluation;
+using Thesis.Evolution.Export;
 using Thesis.Evolution.Models;
 using Thesis.Evolution.NextGenerations;
 
@@ -13,14 +13,26 @@ namespace Thesis.Evolution
     public class Algorithm
     {
         public List<Player> Players { get; private set; }
-        public List<AttributesChange> Changes { get; private set; }
         public IEvaluation Evaluation { get; set; }
         public INextGeneration NextGeneration { get; set; }
         public Population Population { get; private set; }
         public List<Card> Minions { get; private set; }
         public List<Card> Spells { get; private set; }
-        private const int populationSize = 100;
+        public int Generation { get; private set; }
+        private int populationSize = 5;
+        public int PopulationSize
+        {
+            get => populationSize;
+            set
+            {
+                if (Generation == 0)
+                    populationSize = value;
+            }
+        }
         Random random = new Random();
+
+
+        public PopulationExport Export { get; private set; }
 
         public Algorithm(List<Player> players, IEvaluation evaluation,
             INextGeneration nextGeneration)
@@ -28,6 +40,8 @@ namespace Thesis.Evolution
             Players = players;
             Evaluation = evaluation;
             NextGeneration = nextGeneration;
+            Generation = 0;
+            Export = new PopulationExport("./results/score", "./results/populations");
 
             InitializePopulation();
         }
@@ -56,14 +70,16 @@ namespace Thesis.Evolution
             Spells = spells.ToList();
 
             Population = new Population(populationSize, Minions.Count, Spells.Count);
+
         }
 
         public void Evolve(int generations = 1)
         {
-            for (int i=0; i<generations; i++)
+            for (int i = 0; i < generations; i++)
             {
-                Evaluate();
                 Population = NextGeneration.Evolve(Population);
+                Evaluate();
+                Generation++;
             }
         }
 
@@ -72,29 +88,29 @@ namespace Thesis.Evolution
             foreach (var chromosome in Population)
             {
                 Console.WriteLine(chromosome);
-                
+
                 if (chromosome.Score == -1)
                 {
                     Apply(chromosome);
-                    // chromosome.Score = Evaluation.Evaluate(Players);
-                    chromosome.Score = random.NextDouble();
-                }   
+                    chromosome.Score = Evaluation.Evaluate(Players);
+                    // chromosome.Score = random.NextDouble();
+                }
             }
         }
 
         public void Apply(Chromosome chromosome)
         {
-            for (int i=0; i < Minions.Count; i++)
+            for (int i = 0; i < Minions.Count; i++)
             {
-                var costChange = chromosome.Genes[3*i];
-                var healthChange = chromosome.Genes[3*i+1];
-                var atkChange = chromosome.Genes[3*i+2];
+                var costChange = chromosome.Genes[3 * i];
+                var healthChange = chromosome.Genes[3 * i + 1];
+                var atkChange = chromosome.Genes[3 * i + 2];
                 Minions[i].ChangeAttributes(costChange, healthChange, atkChange);
             }
 
-            for (int i=0; i < Spells.Count; i++)
+            for (int i = 0; i < Spells.Count; i++)
             {
-                var costChange = chromosome.Genes[3*Minions.Count + i];
+                var costChange = chromosome.Genes[3 * Minions.Count + i];
                 Spells[i].ChangeAttributes(costChange);
             }
         }
