@@ -73,8 +73,10 @@ namespace Thesis.Evolution.Models
 
         public override string ToString()
         {
+            var m = Magnitude;
+
             string genes = String.Join(",",Genes.Select(g => g.ToString()));
-            return $"({minions}, {spells})[{genes}]";
+            return $"({minions}, {spells});[{genes}];{Score};{m}";
         }
     }
 }

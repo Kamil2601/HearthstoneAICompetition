@@ -18,8 +18,8 @@ namespace Thesis.Evolution.Evaluation
         public int GamesPlayed { get; private set; }
         public int P1Wins { get; private set; }
         public int P2Wins { get; private set; }
-        public int MaxDepth { get; set; } = 5;
-        public int MaxWidth { get; set; } = 100;
+        public int MaxDepth { get; set; } = 10;
+        public int MaxWidth { get; set; } = 500;
         public int GamesForMatchup { get; set; } = 100;
         public int ExceptionsThrown { get; set; }
 
@@ -61,7 +61,7 @@ namespace Thesis.Evolution.Evaluation
 
             game.MainReady();
 
-            Console.WriteLine($"First player: {game.CurrentPlayer.Name}");
+            // Console.WriteLine($"First player: {game.CurrentPlayer.Name}");
 
             while (game.State != State.COMPLETE)
 			{
@@ -106,12 +106,12 @@ namespace Thesis.Evolution.Evaluation
             if (game.Player1.PlayState == PlayState.WON)
             {
                 P1Wins++;
-                Console.WriteLine($"Winner: {Player1.Name}");
+                // Console.WriteLine($"Winner: {Player1.Name}");
             }
             else if (game.Player2.PlayState == PlayState.WON)
             {
                 P2Wins++;
-                Console.WriteLine($"Winner: {Player2.Name}");
+                // Console.WriteLine($"Winner: {Player2.Name}");
             }
                 
         }

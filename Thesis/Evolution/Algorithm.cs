@@ -19,7 +19,7 @@ namespace Thesis.Evolution
         public List<Card> Minions { get; private set; }
         public List<Card> Spells { get; private set; }
         public int Generation { get; private set; }
-        private int populationSize = 10;
+        private int populationSize = 100;
         public int PopulationSize
         {
             get => populationSize;
@@ -79,6 +79,7 @@ namespace Thesis.Evolution
         {
             for (int i = 0; i < generations; i++)
             {
+                Console.WriteLine(Generation+1);
                 Population = NextGeneration.Evolve(Population);
                 Evaluate();
                 Generation++;

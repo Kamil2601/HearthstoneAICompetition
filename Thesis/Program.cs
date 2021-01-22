@@ -15,14 +15,7 @@ namespace Thesis
     {
         static void Main(string[] args)
         {
-            // RunExperiment1();
-            MatchupTest();
-
-            // var card = Cards.FromName("Fiery War Axe");
-
-            // card.ChangeAttributes(1, 1, 1);
-
-            // card.ChangeAttributes(0,0,0);
+            RunExperiment1();
         }
 
         static void RunExperiment1()
@@ -53,12 +46,12 @@ namespace Thesis
 
             var players = new List<Player>() {player1, player2, player3};
 
-            IEvaluation evaluation = new Tournament();
-            INextGeneration nextGeneration = new Experiment1();
+            Tournament evaluation = new Tournament();
+            Experiment1 nextGeneration = new Experiment1();
 
             Algorithm algorithm = new Algorithm(players, evaluation, nextGeneration);
 
-            // algorithm.Evolve(1);
+            algorithm.Evolve(30);
         }
 
         static void MatchupTest()
@@ -67,7 +60,7 @@ namespace Thesis
             {
                 Name = "Druid-Control",
                 HeroClass = CardClass.DRUID,
-                AI = new AggroScore(),
+                AI = new ControlScore(),
                 Deck = BasicDecks.Druid
             };
 
