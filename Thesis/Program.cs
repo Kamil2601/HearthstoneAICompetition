@@ -4,6 +4,7 @@ using System.Diagnostics;
 using SabberStoneBasicAI.Score;
 using SabberStoneCore.Enums;
 using SabberStoneCore.Model;
+using Thesis.CompareDecks;
 using Thesis.Evolution;
 using Thesis.Evolution.Evaluation;
 using Thesis.Evolution.Models;
@@ -17,7 +18,19 @@ namespace Thesis
         static void Main(string[] args)
         {
             // RunExperiment1();
-            MatchupTest();
+            // MatchupTest();
+            DeckTournament();
+        }
+
+        private static void DeckTournament()
+        {
+            var tournament = new DeckTournament();
+
+            tournament.Play();
+
+            tournament.Export("./results/decks");
+
+            Console.WriteLine(tournament);
         }
 
         static void RunExperiment1()
@@ -76,9 +89,9 @@ namespace Thesis
 
             Matchup matchup = new Matchup(player1, player2);
 
-            matchup.MaxDepth = 3;
-            matchup.MaxWidth = 50;
-            matchup.GamesForMatchup = 20;
+            matchup.MaxDepth = 10;
+            matchup.MaxWidth = 20;
+            matchup.GamesForMatchup = 13;
 
             // matchup.GamesForMatchup = 20;
 
@@ -95,6 +108,7 @@ namespace Thesis
             Console.WriteLine(stopwatch.Elapsed);
 
             matchup.Print();
+            Console.WriteLine($"{matchup.P1WinRate} {matchup.P2WinRate}");
         }
     }
 }

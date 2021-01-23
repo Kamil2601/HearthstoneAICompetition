@@ -19,9 +19,12 @@ namespace Thesis.Evolution.Evaluation
         public int P1Wins { get; private set; }
         public int P2Wins { get; private set; }
         public int MaxDepth { get; set; } = 10;
-        public int MaxWidth { get; set; } = 500;
-        public int GamesForMatchup { get; set; } = 100;
+        public int MaxWidth { get; set; } = 30;
+        public int GamesForMatchup { get; set; } = 50;
         public int ExceptionsThrown { get; set; }
+
+        public double P1WinRate => (double)P1Wins/(double)GamesPlayed;
+        public double P2WinRate => (double)P2Wins/(double)GamesPlayed;
 
         public Matchup(Player player1, Player player2)
         {
@@ -124,7 +127,7 @@ namespace Thesis.Evolution.Evaluation
 
             for (int i=0; i<GamesForMatchup; i++)
             {
-                Console.WriteLine($"Game {i}");
+                // Console.WriteLine($"Game {i}");
 
                 gameConfig.StartPlayer = i%2 + 1;
 
@@ -136,7 +139,7 @@ namespace Thesis.Evolution.Evaluation
                 catch (Exception)
                 {
                     ExceptionsThrown++;
-                    Console.WriteLine("Exception");
+                    // Console.WriteLine("Exception");
                 }
                     
             }
