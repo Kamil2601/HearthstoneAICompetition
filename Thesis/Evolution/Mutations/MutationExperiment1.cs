@@ -15,6 +15,7 @@ namespace Thesis.Evolution.Mutations
                 if (random.NextDouble() < 0.05)
                 {
                     chromosome.Genes[i] = random.Next(-3, 4);
+                    chromosome.Score = -1;
                 }
             }
         }

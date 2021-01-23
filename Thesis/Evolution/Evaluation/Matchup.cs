@@ -19,7 +19,7 @@ namespace Thesis.Evolution.Evaluation
         public int P1Wins { get; private set; }
         public int P2Wins { get; private set; }
         public int MaxDepth { get; set; } = 10;
-        public int MaxWidth { get; set; } = 30;
+        public int MaxWidth { get; set; } = 40;
         public int GamesForMatchup { get; set; } = 50;
         public int ExceptionsThrown { get; set; }
 

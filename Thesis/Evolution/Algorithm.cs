@@ -19,7 +19,7 @@ namespace Thesis.Evolution
         public List<Card> Minions { get; private set; }
         public List<Card> Spells { get; private set; }
         public int Generation { get; private set; }
-        private int populationSize = 100;
+        private int populationSize = 50;
         public int PopulationSize
         {
             get => populationSize;
@@ -79,7 +79,7 @@ namespace Thesis.Evolution
         {
             for (int i = 0; i < generations; i++)
             {
-                Console.WriteLine(Generation+1);
+                Console.WriteLine($"Generation {Generation}");
                 Population = NextGeneration.Evolve(Population);
                 Evaluate();
                 Generation++;
@@ -93,13 +93,13 @@ namespace Thesis.Evolution
             {
                 Console.WriteLine(chromosome);
 
-                // if (chromosome.Score == -1)
-                // {
+                if (chromosome.Score == -1)
+                {
                     Apply(chromosome);
                     chromosome.Score = Evaluation.Evaluate(Players);
                     Console.WriteLine(chromosome.Score);
                     // chromosome.Score = random.NextDouble();
-                // }
+                }
             }
         }
 

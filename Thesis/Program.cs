@@ -17,9 +17,9 @@ namespace Thesis
     {
         static void Main(string[] args)
         {
-            // RunExperiment1();
+            RunExperiment1();
             // MatchupTest();
-            DeckTournament();
+            // DeckTournament();
         }
 
         private static void DeckTournament()
@@ -45,9 +45,9 @@ namespace Thesis
 
             Player player2 = new Player()
             {
-                Name = "Mage-Control",
+                Name = "Mage-Midrange",
                 HeroClass = CardClass.MAGE,
-                AI = new ControlScore(),
+                AI = new MidRangeScore(),
                 Deck = BasicDecks.Mage
             };
 
