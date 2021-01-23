@@ -105,5 +105,39 @@ namespace Thesis.MyDecks
             Cards.FromName("Boulderfist Ogre"),
             Cards.FromName("Boulderfist Ogre"),
         };
+
+        public static List<Card> Paladin => new List<Card>()
+        {
+            Cards.FromName("Blessing of Might"),
+            Cards.FromName("Blessing of Might"),
+            Cards.FromName("Goldshire Footman"),
+            Cards.FromName("Goldshire Footman"),
+            Cards.FromName("Hand of Protection"),
+            Cards.FromName("Hand of Protection"),
+            Cards.FromName("Light's Justice"),
+            Cards.FromName("Light's Justice"),
+            Cards.FromName("Stonetusk Boar"),
+            Cards.FromName("Stonetusk Boar"),
+            Cards.FromName("Holy Light"),
+            Cards.FromName("Holy Light"),
+            Cards.FromName("Ironforge Rifleman"),
+            Cards.FromName("Ironforge Rifleman"),
+            Cards.FromName("Raid Leader"),
+            Cards.FromName("Raid Leader"),
+            Cards.FromName("Gnomish Inventor"),
+            Cards.FromName("Gnomish Inventor"),
+            Cards.FromName("Hammer of Wrath"),
+            Cards.FromName("Hammer of Wrath"),
+            Cards.FromName("Stormwind Knight"),
+            Cards.FromName("Stormwind Knight"),
+            Cards.FromName("Nightblade"),
+            Cards.FromName("Nightblade"),
+            Cards.FromName("Stormpike Commando"),
+            Cards.FromName("Stormpike Commando"),
+            Cards.FromName("Lord of the Arena"),
+            Cards.FromName("Lord of the Arena"),
+            Cards.FromName("Stormwind Champion"),
+            Cards.FromName("Stormwind Champion"),
+        };
     }
 }

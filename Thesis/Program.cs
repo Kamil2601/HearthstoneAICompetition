@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using SabberStoneBasicAI.Score;
 using SabberStoneCore.Enums;
 using SabberStoneCore.Model;
@@ -15,7 +16,8 @@ namespace Thesis
     {
         static void Main(string[] args)
         {
-            RunExperiment1();
+            // RunExperiment1();
+            MatchupTest();
         }
 
         static void RunExperiment1()
@@ -66,23 +68,31 @@ namespace Thesis
 
             Player player2 = new Player()
             {
-                Name = "Mage-Control",
-                HeroClass = CardClass.MAGE,
+                Name = "Paladin-Control",
+                HeroClass = CardClass.PALADIN,
                 AI = new ControlScore(),
-                Deck = BasicDecks.Mage
+                Deck = BasicDecks.Paladin
             };
 
             Matchup matchup = new Matchup(player1, player2);
 
-            matchup.MaxDepth = 2;
+            matchup.MaxDepth = 3;
             matchup.MaxWidth = 50;
-            matchup.GamesForMatchup = 10;
+            matchup.GamesForMatchup = 20;
 
             // matchup.GamesForMatchup = 20;
 
             // matchup.PlayGame();
 
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
+
             matchup.PlayMatchup();
+            // matchup.PlayGame();
+
+            stopwatch.Stop();
+
+            Console.WriteLine(stopwatch.Elapsed);
 
             matchup.Print();
         }

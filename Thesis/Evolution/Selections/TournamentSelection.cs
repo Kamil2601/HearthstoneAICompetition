@@ -32,7 +32,7 @@ namespace Thesis.Evolution.Selections
                     tournament.Add(population[index]);
                 }
 
-                var bestScore = tournament.Select(ind => ind.Score).Max();
+                var bestScore = tournament.Select(ind => ind.Score).Min();
 
                 var bestIndividuals = tournament.Where(ind => ind.Score == bestScore).ToList();
 
@@ -56,7 +56,7 @@ namespace Thesis.Evolution.Selections
                 tournament.Add(population[index]);
             }
 
-            var bestScore = tournament.Select(ind => ind.Score).Max();
+            var bestScore = tournament.Select(ind => ind.Score).Min();
 
             var bestIndividuals = tournament.Where(ind => ind.Score == bestScore).ToList();
 

@@ -120,10 +120,12 @@ namespace Thesis.Evolution.Evaluation
         {
             Reset();
 
-            // Console.WriteLine($"{Player1.Name} vs {Player2.Name}");
+            Console.WriteLine($"{Player1.Name} vs {Player2.Name}");
 
             for (int i=0; i<GamesForMatchup; i++)
             {
+                Console.WriteLine($"Game {i}");
+
                 gameConfig.StartPlayer = i%2 + 1;
 
                 try
