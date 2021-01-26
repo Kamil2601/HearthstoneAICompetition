@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Thesis.Evolution.Crossovers;
 using Thesis.Evolution.Models;
 using Thesis.Evolution.Mutations;

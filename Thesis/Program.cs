@@ -62,9 +62,9 @@ namespace Thesis
             var players = new List<Player>() {player1, player2, player3};
 
             Tournament evaluation = new Tournament();
-            Experiment1 nextGeneration = new Experiment1();
+            Experiment1Offspring offspring= new Experiment1Offspring();
 
-            BaseEvolution evolution = new BaseEvolution(players, evaluation, nextGeneration);
+            BaseEvolution evolution = new BaseEvolution(players, evaluation, offspring);
 
             evolution.Evolve(30);
         }
