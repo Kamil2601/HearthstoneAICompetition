@@ -64,9 +64,9 @@ namespace Thesis
             Tournament evaluation = new Tournament();
             Experiment1 nextGeneration = new Experiment1();
 
-            Algorithm algorithm = new Algorithm(players, evaluation, nextGeneration);
+            BaseEvolution evolution = new BaseEvolution(players, evaluation, nextGeneration);
 
-            algorithm.Evolve(30);
+            evolution.Evolve(30);
         }
 
         static void MatchupTest()

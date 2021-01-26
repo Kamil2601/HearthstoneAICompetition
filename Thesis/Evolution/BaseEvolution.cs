@@ -10,7 +10,7 @@ using Thesis.Evolution.NextGenerations;
 
 namespace Thesis.Evolution
 {
-    public class Algorithm
+    public class BaseEvolution
     {
         public List<Player> Players { get; private set; }
         public IEvaluation Evaluation { get; set; }
@@ -34,7 +34,7 @@ namespace Thesis.Evolution
 
         public PopulationExport Export { get; private set; }
 
-        public Algorithm(List<Player> players, IEvaluation evaluation,
+        public BaseEvolution(List<Player> players, IEvaluation evaluation,
             INextGeneration nextGeneration)
         {
             Players = players;
