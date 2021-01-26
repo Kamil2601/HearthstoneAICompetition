@@ -8,7 +8,7 @@ using Thesis.CompareDecks;
 using Thesis.Evolution;
 using Thesis.Evolution.Evaluation;
 using Thesis.Evolution.Models;
-using Thesis.Evolution.NextGenerations;
+using Thesis.Evolution.Offsprings;
 using Thesis.MyDecks;
 
 namespace Thesis

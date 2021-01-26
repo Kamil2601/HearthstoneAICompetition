@@ -1,10 +1,9 @@
-using System;
 using System.Collections.Generic;
 using Thesis.Evolution.Models;
 
 namespace Thesis.Evolution
 {
-    
+
     public class NSGA2
     {
         public List<List<Chromosome>> NonDominatedSort(Population population)
@@ -12,6 +11,9 @@ namespace Thesis.Evolution
             var result = new List<List<Chromosome>>();
 
             Domination[] dominations = new Domination[population.Count];
+
+            for (int i=0; i<dominations.Length; i++)
+                dominations[i] = new Domination();
 
             for (int i=0; i<population.Count; i++)
             {
@@ -38,6 +40,8 @@ namespace Thesis.Evolution
                     {
                         currentFront.Add(population[i]);
                         frontIndexes.Add(i);
+                        dominations[i].DominationCount = -1;
+                        sortCount++;
                     }
                 }
 

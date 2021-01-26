@@ -5,9 +5,9 @@ using Thesis.Evolution.Models;
 using Thesis.Evolution.Mutations;
 using Thesis.Evolution.Selections;
 
-namespace Thesis.Evolution.NextGenerations
+namespace Thesis.Evolution.Offsprings
 {
-    public class Experiment1 : INextGeneration
+    public class Experiment1 : IOffspring
     {
         public double CrossoverRate { get; set; } = 0.35;
         public double MutationRate { get; set; } = 0.2;

@@ -1,8 +1,8 @@
 using Thesis.Evolution.Models;
 
-namespace Thesis.Evolution.NextGenerations
+namespace Thesis.Evolution.Offsprings
 {
-    public interface INextGeneration
+    public interface IOffspring
     {
         Population Evolve(Population population);
     }

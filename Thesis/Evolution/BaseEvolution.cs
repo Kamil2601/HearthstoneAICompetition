@@ -6,7 +6,7 @@ using SabberStoneCore.Model;
 using Thesis.Evolution.Evaluation;
 using Thesis.Evolution.Export;
 using Thesis.Evolution.Models;
-using Thesis.Evolution.NextGenerations;
+using Thesis.Evolution.Offsprings;
 
 namespace Thesis.Evolution
 {
@@ -14,7 +14,7 @@ namespace Thesis.Evolution
     {
         public List<Player> Players { get; private set; }
         public IEvaluation Evaluation { get; set; }
-        public INextGeneration NextGeneration { get; set; }
+        public IOffspring Offspring { get; set; }
         public Population Population { get; private set; }
         public List<Card> Minions { get; private set; }
         public List<Card> Spells { get; private set; }
@@ -35,11 +35,11 @@ namespace Thesis.Evolution
         public PopulationExport Export { get; private set; }
 
         public BaseEvolution(List<Player> players, IEvaluation evaluation,
-            INextGeneration nextGeneration)
+            IOffspring nextGeneration)
         {
             Players = players;
             Evaluation = evaluation;
-            NextGeneration = nextGeneration;
+            Offspring = nextGeneration;
             Generation = 0;
             Export = new PopulationExport("./results/score", "./results/populations");
 
@@ -80,7 +80,7 @@ namespace Thesis.Evolution
             for (int i = 0; i < generations; i++)
             {
                 Console.WriteLine($"Generation {Generation}");
-                Population = NextGeneration.Evolve(Population);
+                Population = Offspring.Evolve(Population);
                 Evaluate();
                 Generation++;
                 Export.Export(Population, Generation);
