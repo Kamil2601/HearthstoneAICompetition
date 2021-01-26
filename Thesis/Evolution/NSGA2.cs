@@ -1,11 +1,15 @@
 using System.Collections.Generic;
 using Thesis.Evolution.Models;
+using Thesis.Evolution.Offsprings;
 
 namespace Thesis.Evolution
 {
 
     public class NSGA2
     {
+        public Population Population { get; set; }
+        public IOffspring Offspring { get; set; }
+
         public List<List<Chromosome>> NonDominatedSort(Population population)
         {
             var result = new List<List<Chromosome>>();

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Thesis.Evolution.Crossovers;
 using Thesis.Evolution.Models;
@@ -7,7 +7,7 @@ using Thesis.Evolution.Selections;
 
 namespace Thesis.Evolution.Offsprings
 {
-    public class Experiment1 : IOffspring
+    public class Experiment1Offspring : IOffspring
     {
         public double CrossoverRate { get; set; } = 0.35;
         public double MutationRate { get; set; } = 0.2;
