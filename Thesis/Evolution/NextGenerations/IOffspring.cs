@@ -1,4 +1,4 @@
-using Thesis.Evolution.Models;
+﻿using Thesis.Evolution.Models;
 
 namespace Thesis.Evolution.Offsprings
 {
