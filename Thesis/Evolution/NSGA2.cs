@@ -102,9 +102,12 @@ namespace Thesis.Evolution
 
                 foreach (int index in frontIndexes)
                 {
+                    population[index].Rank = result.Count; 
+
                     foreach (int dominated in dominations[index].Dominates)
                     {
                         dominations[dominated].DominationCount--;
+                        
                     }
                 }
             }

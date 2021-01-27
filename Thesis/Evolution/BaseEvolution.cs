@@ -43,7 +43,8 @@ namespace Thesis.Evolution
             Generation = 0;
             Export = new PopulationExport("./results/score", "./results/populations");
 
-            InitializePopulation();
+            if (Players != null)
+                InitializePopulation();
         }
 
         private void InitializePopulation()

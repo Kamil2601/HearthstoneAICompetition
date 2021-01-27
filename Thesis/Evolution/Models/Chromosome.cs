@@ -42,7 +42,6 @@ namespace Thesis.Evolution.Models
 
         private int maxMagnitude;
         
-
         public Chromosome(int minions, int spells, bool randomInit = false)
         {
             this.spells = spells;

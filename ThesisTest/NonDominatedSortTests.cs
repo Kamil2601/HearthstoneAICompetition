@@ -39,9 +39,10 @@ namespace ThesisTest
 
             foreach (var list in sorted)
             {
-                Assert.Equal(list.Count, 1);
-                Assert.Equal(list[0], population[i]);
+                Assert.Equal(1, list.Count);
+                Assert.Equal(population[i], list[0]);
                 i++;
+                Assert.Equal(i, list[0].Rank);
             }
         }
     }
