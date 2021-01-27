@@ -12,13 +12,13 @@ namespace Thesis.Evolution
 {
     public class BaseEvolution
     {
-        public List<Player> Players { get; private set; }
+        public List<Player> Players { get; protected set; }
         public IEvaluation Evaluation { get; set; }
         public IOffspring Offspring { get; set; }
-        public Population Population { get; private set; }
-        public List<Card> Minions { get; private set; }
-        public List<Card> Spells { get; private set; }
-        public int Generation { get; private set; }
+        public Population Population { get; protected set; }
+        public List<Card> Minions { get; protected set; }
+        public List<Card> Spells { get; protected set; }
+        public int Generation { get; protected set; }
         private int populationSize = 50;
         public int PopulationSize
         {
@@ -32,14 +32,14 @@ namespace Thesis.Evolution
         Random random = new Random();
 
 
-        public PopulationExport Export { get; private set; }
+        public PopulationExport Export { get; protected set; }
 
         public BaseEvolution(List<Player> players, IEvaluation evaluation,
-            IOffspring nextGeneration)
+            IOffspring offspring)
         {
             Players = players;
             Evaluation = evaluation;
-            Offspring = nextGeneration;
+            Offspring = offspring;
             Generation = 0;
             Export = new PopulationExport("./results/score", "./results/populations");
 
@@ -75,7 +75,7 @@ namespace Thesis.Evolution
 
         }
 
-        public void Evolve(int generations = 1)
+        public virtual void Evolve(int generations = 1)
         {
             for (int i = 0; i < generations; i++)
             {
@@ -87,18 +87,23 @@ namespace Thesis.Evolution
             }
         }
 
-        private void Evaluate()
+        protected void Evaluate()
         {
-            foreach (var chromosome in Population)
+            Evaluate(Population);
+        }
+
+        protected void Evaluate(Population population)
+        {
+            foreach (var chromosome in population)
             {
                 Console.WriteLine(chromosome);
 
-                if (chromosome.Score == -1)
+                if (chromosome.Balance == -1)
                 {
                     Apply(chromosome);
-                    chromosome.Score = Evaluation.Evaluate(Players);
-                    Console.WriteLine(chromosome.Score);
-                    // chromosome.Score = random.NextDouble();
+                    chromosome.Balance = Evaluation.Evaluate(Players);
+                    Console.WriteLine(chromosome.Balance);
+                    // chromosome.Balance = random.NextDouble();
                 }
             }
         }

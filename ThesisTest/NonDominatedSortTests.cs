@@ -12,19 +12,19 @@ namespace ThesisTest
             var c1 = new Chromosome(0, 1)
             {
                 Genes = new int[1] { 1 },
-                Score = 0.1
+                Balance = 0.1
             };
 
             var c2 = new Chromosome(0, 1)
             {
                 Genes = new int[1] { 2 },
-                Score = 0.2
+                Balance = 0.2
             };
 
             var c3 = new Chromosome(0, 1)
             {
                 Genes = new int[1] { 3 },
-                Score = 0.3
+                Balance = 0.3
             };
 
             Population population = new Population(3, 0, 1, false) { c1, c2, c3 };

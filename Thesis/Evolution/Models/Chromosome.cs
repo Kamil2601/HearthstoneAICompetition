@@ -10,10 +10,37 @@ namespace Thesis.Evolution.Models
         //     MINIONS / WEAPONS      |    SPELLS
         // [cost, health, attack, ... , cost, cost, ...]
         public int[] Genes { get; set; }
-        public double Score { get; set; } = -1;
+        public double Balance { get; set; } = -1;
         private readonly int length;
         private readonly int minions;
         private readonly int spells;
+
+        public int Magnitude
+        {
+            get
+            {
+                int result = 0;
+
+                for (int i = 0; i < minions; i++)
+                {
+                    result += 2 * Math.Abs(Genes[3 * i]) + Math.Abs(Genes[3 * i + 1]) + Math.Abs(Genes[3 * i + 2]);
+                }
+
+                for (int i = 0; i < spells; i++)
+                {
+                    result += 2 * Math.Abs(Genes[3 * minions + i]);
+                }
+
+                return result;
+            }
+        }
+
+        public double NormalizedMagnitude => (double)Magnitude/(double)maxMagnitude;
+
+        public double CrowdingDistance { get; set; }
+        public int Rank { get; set; } = -1;
+
+        private int maxMagnitude;
         
 
         public Chromosome(int minions, int spells, bool randomInit = false)
@@ -22,6 +49,8 @@ namespace Thesis.Evolution.Models
             this.minions = minions;
             length = 3 * minions + spells;
             Genes = new int[length];
+
+            maxMagnitude = 2*3*(minions+spells)+2*3*minions;
 
             if (randomInit)
                 RandomInitialize();
@@ -51,32 +80,12 @@ namespace Thesis.Evolution.Models
             }
         }
 
-        public int Magnitude
-        {
-            get
-            {
-                int result = 0;
-
-                for (int i = 0; i < minions; i++)
-                {
-                    result += 2 * Math.Abs(Genes[3 * i]) + Math.Abs(Genes[3 * i + 1]) + Math.Abs(Genes[3 * i + 2]);
-                }
-
-                for (int i = 0; i < spells; i++)
-                {
-                    result += 2 * Math.Abs(Genes[3 * minions + i]);
-                }
-
-                return result;
-            }
-        }
-
         public override string ToString()
         {
             var m = Magnitude;
 
             string genes = String.Join(",",Genes.Select(g => g.ToString()));
-            return $"({minions}, {spells});[{genes}];{Score};{m}";
+            return $"({minions}, {spells});[{genes}];{Balance};{m}";
         }
     }
 }

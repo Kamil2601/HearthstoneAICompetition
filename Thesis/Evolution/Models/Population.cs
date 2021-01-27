@@ -31,19 +31,19 @@ namespace Thesis.Evolution.Models
                 Add(new Chromosome(Minions, Spells, true));
         }
 
-        public double MaxScore => this.Select(chromosome => chromosome.Score)
+        public double MaxScore => this.Select(chromosome => chromosome.Balance)
             .OrderByDescending(score => score).First();
 
-        public double MinScore => this.Select(chromosome => chromosome.Score)
+        public double MinScore => this.Select(chromosome => chromosome.Balance)
             .OrderBy(score => score).First();
 
-        public double AvgScore => this.Average(chromosome => chromosome.Score);
+        public double AvgScore => this.Average(chromosome => chromosome.Balance);
 
         public double BestChromosomeMagnitude
         {
             get
             {
-                var best = this.OrderBy(chrom => chrom.Score).First();
+                var best = this.OrderBy(chrom => chrom.Balance).First();
 
                 return best.Magnitude;
             }
