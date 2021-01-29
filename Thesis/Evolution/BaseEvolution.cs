@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using SabberStoneCore.Enums;
 using SabberStoneCore.Model;
@@ -88,6 +89,8 @@ namespace Thesis.Evolution
 
         public void Evaluate(Population population)
         {
+            var path = "./results/BaseEvolution/best-chromosomes.csv";
+
             foreach (var chromosome in population)
             {
                 Console.WriteLine(chromosome);
@@ -96,7 +99,11 @@ namespace Thesis.Evolution
                 {
                     Apply(chromosome);
                     chromosome.Balance = Evaluation.Evaluate(Players);
-                    Console.WriteLine(chromosome.Balance);
+
+                    using (StreamWriter file = new StreamWriter(path, true))
+                    {
+                        file.WriteLine(chromosome);
+                    }
                 }
             }
         }
