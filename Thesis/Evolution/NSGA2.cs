@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 using Thesis.Evolution.Evaluation;
-using Thesis.Evolution.Export;
+using Thesis.Evolution.Helpers;
 using Thesis.Evolution.Models;
 using Thesis.Evolution.Offsprings;
 
@@ -51,8 +51,10 @@ namespace Thesis.Evolution
                 }
                 else
                 {
-                    throw new NotImplementedException();
-                    // TODO: Crowding-Distance Sorting
+                    CalculateCrowdingDistance(front);
+                    var takenChromosomes = front.OrderByDescending(c => c.Rank)
+                        .Take(result.Size - result.Count);
+                    result.AddRange(takenChromosomes);
                 }
             }
 

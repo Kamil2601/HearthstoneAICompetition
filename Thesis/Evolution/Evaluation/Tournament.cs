@@ -6,6 +6,8 @@ namespace Thesis.Evolution.Evaluation
 {
     public class Tournament: IEvaluation
     {
+        public int GamesForMatchup { get; set; } = 50;
+
         public double Evaluate(List<Player> players)
         {
             var count = players.Count;
@@ -16,7 +18,11 @@ namespace Thesis.Evolution.Evaluation
             {
                 for (int j=i+1; j<count; j++)
                 {
-                    var matchup = new Matchup(players[i], players[j]);
+                    var matchup = new Matchup(players[i], players[j])
+                    {
+                        GamesForMatchup = this.GamesForMatchup
+                    };
+                    
                     matchup.PlayMatchup();
 
                     double winRate = (double)matchup.P1Wins/(double)matchup.GamesPlayed;

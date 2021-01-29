@@ -40,6 +40,12 @@ namespace Thesis.Evolution.Models
         public double CrowdingDistance { get; set; }
         public int Rank { get; set; } = -1;
 
+        public int Length => length;
+
+        public int Minions => minions;
+
+        public int Spells => spells;
+
         private int maxMagnitude;
         
         public Chromosome(int minions, int spells, bool randomInit = false)
@@ -58,6 +64,24 @@ namespace Thesis.Evolution.Models
         public Chromosome(Chromosome other): this(other.minions, other.spells)
         {
 
+        }
+
+        public Chromosome(string str)
+        {
+            var split = str.Split(";");
+
+            var size = split[0];
+
+            var cards = size.Remove(size.Length-1, 1).Remove(0, 1).Split(", ");
+
+            minions = Convert.ToInt32(cards[0]);
+            spells = Convert.ToInt32(cards[1]);
+
+            var geneStr = split[1];
+
+            var genes = geneStr.Remove(geneStr.Length-1, 1).Remove(0, 1).Split(",");
+
+            Genes = genes.Select(g => Convert.ToInt32(g)).ToArray();
         }
 
         public Chromosome Copy()

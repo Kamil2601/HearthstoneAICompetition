@@ -1,7 +1,8 @@
+using System.Collections.Generic;
 using System.IO;
 using Thesis.Evolution.Models;
 
-namespace Thesis.Evolution.Export
+namespace Thesis.Evolution.Helpers
 {
     public class PopulationExport
     {

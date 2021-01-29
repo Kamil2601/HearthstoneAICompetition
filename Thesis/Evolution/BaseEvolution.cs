@@ -4,7 +4,7 @@ using System.Linq;
 using SabberStoneCore.Enums;
 using SabberStoneCore.Model;
 using Thesis.Evolution.Evaluation;
-using Thesis.Evolution.Export;
+using Thesis.Evolution.Helpers;
 using Thesis.Evolution.Models;
 using Thesis.Evolution.Offsprings;
 
@@ -35,41 +35,34 @@ namespace Thesis.Evolution
         public PopulationExport Export { get; protected set; }
 
         public BaseEvolution(List<Player> players, IEvaluation evaluation,
-            IOffspring offspring)
+            IOffspring offspring, Population population = null)
         {
             Players = players;
             Evaluation = evaluation;
             Offspring = offspring;
             Generation = 0;
             Export = new PopulationExport("./results/score", "./results/populations");
+            Population = population;
 
-            if (Players != null)
+
+            InitializeCards();
+
+            if (Players != null && population == null)
                 InitializePopulation();
+
+            populationSize = Population.Size;
+        }
+
+        public void InitializeCards()
+        {
+            EvolutionCardSet cardSet = new EvolutionCardSet(Players);
+
+            Minions = cardSet.Minions;
+            Spells = cardSet.Spells;
         }
 
         private void InitializePopulation()
         {
-            HashSet<Card> minions = new HashSet<Card>();
-            HashSet<Card> spells = new HashSet<Card>();
-
-            foreach (var player in Players)
-            {
-                foreach (var card in player.Deck)
-                {
-                    if (card.Type == CardType.MINION || card.Type == CardType.WEAPON)
-                    {
-                        minions.Add(card);
-                    }
-                    else if (card.Type == CardType.SPELL)
-                    {
-                        spells.Add(card);
-                    }
-                }
-            }
-
-            Minions = minions.ToList();
-            Spells = spells.ToList();
-
             Population = new Population(populationSize, Minions.Count, Spells.Count);
             Evaluate();
             Export.Export(Population, Generation);
@@ -88,12 +81,12 @@ namespace Thesis.Evolution
             }
         }
 
-        protected void Evaluate()
+        public void Evaluate()
         {
             Evaluate(Population);
         }
 
-        protected void Evaluate(Population population)
+        public void Evaluate(Population population)
         {
             foreach (var chromosome in population)
             {
@@ -104,26 +97,13 @@ namespace Thesis.Evolution
                     Apply(chromosome);
                     chromosome.Balance = Evaluation.Evaluate(Players);
                     Console.WriteLine(chromosome.Balance);
-                    // chromosome.Balance = random.NextDouble();
                 }
             }
         }
 
         public void Apply(Chromosome chromosome)
         {
-            for (int i = 0; i < Minions.Count; i++)
-            {
-                var costChange = chromosome.Genes[3 * i];
-                var healthChange = chromosome.Genes[3 * i + 1];
-                var atkChange = chromosome.Genes[3 * i + 2];
-                Minions[i].ChangeAttributes(costChange, healthChange, atkChange);
-            }
-
-            for (int i = 0; i < Spells.Count; i++)
-            {
-                var costChange = chromosome.Genes[3 * Minions.Count + i];
-                Spells[i].ChangeAttributes(costChange);
-            }
+            EvolutionHelper.Apply(chromosome, Minions, Spells);
         }
     }
 }

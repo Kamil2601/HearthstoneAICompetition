@@ -19,10 +19,11 @@ namespace Thesis.Evolution.Models
                 RandomInitialize();
         }
 
-        public Population(Population population): 
+        public Population(Population population, bool copy = false): 
             this(population.Size, population.Minions, population.Spells, false)
         {
-
+            if (copy)
+                AddRange(population);
         }
 
         private void RandomInitialize()
