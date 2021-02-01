@@ -7,12 +7,12 @@ using SabberStoneBasicAI.Score;
 using SabberStoneCore.Enums;
 using SabberStoneCore.Model;
 using Thesis.CompareDecks;
+using Thesis.Data;
 using Thesis.Evolution;
 using Thesis.Evolution.Evaluation;
 using Thesis.Evolution.Helpers;
 using Thesis.Evolution.Models;
 using Thesis.Evolution.Offsprings;
-using Thesis.MyDecks;
 
 namespace Thesis
 {
@@ -40,36 +40,27 @@ namespace Thesis
             Console.WriteLine(tournament);
         }
 
+        static void NSGA2Test()
+        {
+            var players = PlayersList.Experiments;
+
+            IEvaluation evaluation = new RandomScore();
+            IOffspring offspring = new Offspring()
+            {
+                MutationRate = 1
+            };
+
+            NSGA2 nSGA2 = new NSGA2(players, evaluation, offspring);
+
+            nSGA2.Evolve(10);
+        }
+
         static void RunExperiment1()
         {
-            Player player1 = new Player()
-            {
-                Name = "Hunter-Aggro",
-                HeroClass = CardClass.HUNTER,
-                AI = new AggroScore(),
-                Deck = BasicDecks.Hunter
-            };
-
-            Player player2 = new Player()
-            {
-                Name = "Mage-Midrange",
-                HeroClass = CardClass.MAGE,
-                AI = new MidRangeScore(),
-                Deck = BasicDecks.Mage
-            };
-
-            Player player3 = new Player()
-            {
-                Name = "Druid-Control",
-                HeroClass = CardClass.DRUID,
-                AI = new ControlScore(),
-                Deck = BasicDecks.Druid
-            };
-
-            var players = new List<Player>() {player1, player2, player3};
+            var players = PlayersList.Experiments;
 
             Tournament evaluation = new Tournament();
-            Experiment1Offspring offspring= new Experiment1Offspring();
+            Offspring offspring= new Offspring();
 
             BaseEvolution evolution = new BaseEvolution(players, evaluation, offspring);
 
@@ -78,31 +69,8 @@ namespace Thesis
 
         static void EvaluateBestChromosomes()
         {
-            Player player1 = new Player()
-            {
-                Name = "Hunter-Aggro",
-                HeroClass = CardClass.HUNTER,
-                AI = new AggroScore(),
-                Deck = BasicDecks.Hunter
-            };
 
-            Player player2 = new Player()
-            {
-                Name = "Mage-Midrange",
-                HeroClass = CardClass.MAGE,
-                AI = new MidRangeScore(),
-                Deck = BasicDecks.Mage
-            };
-
-            Player player3 = new Player()
-            {
-                Name = "Druid-Control",
-                HeroClass = CardClass.DRUID,
-                AI = new ControlScore(),
-                Deck = BasicDecks.Druid
-            };
-
-            var players = new List<Player>() {player1, player2, player3};
+            var players = PlayersList.Experiments;
 
             HashSet<string> strs = new HashSet<string>();
 
@@ -131,7 +99,7 @@ namespace Thesis
             Population population = new Population(11, 22, 13, false);
 
             population.AddRange(chromosomes);
-            Experiment1Offspring offspring= new Experiment1Offspring();
+            Offspring offspring = new Offspring();
 
             BaseEvolution evolution = new BaseEvolution(players, tournament, null, population);
 

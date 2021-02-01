@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.IO;
 using SabberStoneBasicAI.Score;
+using Thesis.Data;
 using Thesis.Evolution.Evaluation;
 using Thesis.Evolution.Models;
-using Thesis.MyDecks;
 
 namespace Thesis.CompareDecks
 {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using SabberStoneCore.Model;
-using Thesis.MyDecks;
+using Thesis.Data;
 using Xunit;
 
 namespace ThesisTest

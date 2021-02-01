@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using SabberStoneCore.Model;
 
-namespace Thesis.MyDecks
+namespace Thesis.Data
 {
     public class BasicDecks
     {

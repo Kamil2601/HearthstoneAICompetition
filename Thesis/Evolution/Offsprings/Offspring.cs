@@ -6,14 +6,14 @@ using Thesis.Evolution.Selections;
 
 namespace Thesis.Evolution.Offsprings
 {
-    public class Experiment1Offspring : IOffspring
+    public class Offspring : IOffspring
     {
         public double CrossoverRate { get; set; } = 0.35;
         public double MutationRate { get; set; } = 0.2;
         public double MutationProbability { get; set; } = 0.05;
         public ISelection Selection { get; set; } = new TournamentSelection(3);
         public ICrossover Crossover { get; set; } = new TwoPointCrossover();
-        public IMutation Mutation { get; set; } = new MutationExperiment1();
+        public IMutation Mutation { get; set; } = new Mutation();
         public Population Evolve(Population population)
         {
             var crossoverSize = Math.Round(population.Size*CrossoverRate);
@@ -39,6 +39,11 @@ namespace Thesis.Evolution.Offsprings
                 var parent = Selection.SelectOne(population);
 
                 result.Add(parent);
+            }
+
+            while (result.Count > result.Size)
+            {
+                result.RemoveAt(result.Count-1);
             }
 
             Mutation.Mutate(result);
