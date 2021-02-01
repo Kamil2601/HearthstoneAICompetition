@@ -20,7 +20,7 @@ namespace Thesis
     {
         static void Main(string[] args)
         {
-            NSGA2Test();
+            RunNSGA2();
 
         }
 
@@ -35,7 +35,7 @@ namespace Thesis
             Console.WriteLine(tournament);
         }
 
-        static void NSGA2Test()
+        static void RunNSGA2()
         {
             IOffspring offspring = new Offspring()
             {
@@ -45,13 +45,14 @@ namespace Thesis
             var config = new EvolutionConfig()
             {
                 Players = PlayersList.Experiments,
-                Evaluation = new RandomScore(),
-                Offspring = offspring
+                Evaluation = new Tournament(),
+                Offspring = offspring,
+                Export = new PopulationExport("nsga2-score.csv", "nsga2-population.csv")
             };
 
             NSGA2 nSGA2 = new NSGA2(config);
 
-            // nSGA2.Evolve(10);
+            nSGA2.Evolve(40);
         }
 
         static void RunExperiment1()

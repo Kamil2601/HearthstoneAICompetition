@@ -88,22 +88,15 @@ namespace Thesis.Evolution
 
         public void Evaluate(Population population)
         {
-            var path = "./results/BaseEvolution/best-chromosomes.csv";
-
             foreach (var chromosome in population)
             {
-                Console.WriteLine(chromosome);
-
                 if (chromosome.Balance == -1)
                 {
                     Apply(chromosome);
                     chromosome.Balance = Evaluation.Evaluate(Players);
-
-                    using (StreamWriter file = new StreamWriter(path, true))
-                    {
-                        file.WriteLine(chromosome);
-                    }
                 }
+
+                Console.WriteLine(chromosome);
             }
         }
 
