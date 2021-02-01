@@ -13,11 +13,9 @@ namespace Thesis.Evolution
     public class NSGA2 : BaseEvolution
     {
 
-        public NSGA2(List<Player> players = null,
-            IEvaluation evaluation = null, IOffspring offspring = null,
-            Population population = null) : base(players, evaluation, offspring, population)
+        public NSGA2(EvolutionConfig config): base(config)
         {
-            Export = new PopulationExport("results/nsga2-score.csv", "results/nsga2-populations.csv");
+            
         }
 
         public override void Evolve(int generations = 1)

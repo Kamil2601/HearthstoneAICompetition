@@ -20,13 +20,8 @@ namespace Thesis
     {
         static void Main(string[] args)
         {
-            // RunExperiment1();
-            // MatchupTest();
-            // DeckTournament();
+            NSGA2Test();
 
-            // Console.WriteLine(("abc", "123") == ("abc", "123"));
-
-            EvaluateBestChromosomes();
         }
 
         private static void DeckTournament()
@@ -42,27 +37,33 @@ namespace Thesis
 
         static void NSGA2Test()
         {
-            var players = PlayersList.Experiments;
-
-            IEvaluation evaluation = new RandomScore();
             IOffspring offspring = new Offspring()
             {
-                MutationRate = 1
+                CrossoverRate = 1
             };
 
-            NSGA2 nSGA2 = new NSGA2(players, evaluation, offspring);
+            var config = new EvolutionConfig()
+            {
+                Players = PlayersList.Experiments,
+                Evaluation = new RandomScore(),
+                Offspring = offspring
+            };
 
-            nSGA2.Evolve(10);
+            NSGA2 nSGA2 = new NSGA2(config);
+
+            // nSGA2.Evolve(10);
         }
 
         static void RunExperiment1()
         {
-            var players = PlayersList.Experiments;
+            var config = new EvolutionConfig()
+            {
+                Players = PlayersList.Experiments,
+                Evaluation = new Tournament(),
+                Offspring = new Offspring()
+            };
 
-            Tournament evaluation = new Tournament();
-            Offspring offspring= new Offspring();
-
-            BaseEvolution evolution = new BaseEvolution(players, evaluation, offspring);
+            BaseEvolution evolution = new BaseEvolution(config);
 
             evolution.Evolve(30);
         }
@@ -101,7 +102,14 @@ namespace Thesis
             population.AddRange(chromosomes);
             Offspring offspring = new Offspring();
 
-            BaseEvolution evolution = new BaseEvolution(players, tournament, null, population);
+            var config = new EvolutionConfig()
+            {
+                Population = population,
+                Offspring = new Offspring(),
+                Evaluation = tournament
+            };
+
+            BaseEvolution evolution = new BaseEvolution(config);
 
             evolution.Evaluate();
         }

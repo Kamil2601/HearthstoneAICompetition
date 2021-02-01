@@ -35,20 +35,19 @@ namespace Thesis.Evolution
 
         public PopulationExport Export { get; protected set; }
 
-        public BaseEvolution(List<Player> players, IEvaluation evaluation,
-            IOffspring offspring, Population population = null)
+        public BaseEvolution(EvolutionConfig config)
         {
-            Players = players;
-            Evaluation = evaluation;
-            Offspring = offspring;
-            Generation = 0;
-            Export = new PopulationExport("./results/score", "./results/populations");
-            Population = population;
+            Players = config.Players;
+            Evaluation = config.Evaluation;
+            Offspring = config.Offspring;
+            Export = config.Export;
+            Population = config.Population;
 
+            Generation = 0;
 
             InitializeCards();
 
-            if (Players != null && population == null)
+            if (Players != null && Population == null)
                 InitializePopulation();
 
             populationSize = Population.Size;

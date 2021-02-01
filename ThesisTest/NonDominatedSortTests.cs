@@ -29,7 +29,12 @@ namespace ThesisTest
 
             Population population = new Population(3, 0, 1, false) { c1, c2, c3 };
 
-            var nsga2 = new NSGA2();
+            var config = new EvolutionConfig()
+            {
+                Population = population
+            };
+
+            var nsga2 = new NSGA2(config);
 
             var sorted = nsga2.NonDominatedSort(population);
 
