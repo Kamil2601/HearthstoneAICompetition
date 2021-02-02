@@ -52,8 +52,11 @@ namespace Thesis
                 Size = 50,
                 Minions = 22,
                 Spells = 13,
-                Chromosomes = new List<Chromosome>() { baseChromosome, bestChromosome }
+                Chromosomes = new List<Chromosome>() { baseChromosome, bestChromosome },
+                Init = true
             };
+
+            Population population = new Population(populationConfig);
 
             var config = new EvolutionConfig()
             {
@@ -61,6 +64,7 @@ namespace Thesis
                 Evaluation = new Tournament(),
                 Offspring = offspring,
                 Export = new PopulationExport("nsga2-score.csv", "nsga2-population.csv"),
+                Population = population
             };
 
             NSGA2 nSGA2 = new NSGA2(config);
