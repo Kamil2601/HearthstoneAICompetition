@@ -18,7 +18,15 @@ namespace Thesis.Evolution.Offsprings
         {
             var crossoverSize = Math.Round(population.Size*CrossoverRate);
 
-            var result = new Population(population);
+            PopulationConfig config = new PopulationConfig()
+            {
+                Size = population.Size,
+                Minions = population.Minions,
+                Spells = population.Spells,
+                Init = false,
+            };
+
+            var result = new Population(config);
 
             while (result.Count < crossoverSize)
             {

@@ -27,7 +27,14 @@ namespace ThesisTest
                 Balance = 0.3
             };
 
-            Population population = new Population(3, 0, 1, false) { c1, c2, c3 };
+            var populationConfig = new PopulationConfig()
+            {
+                Size = 3,
+                Minions = 0,
+                Spells = 1,
+            };
+
+            Population population = new Population(populationConfig) { c1, c2, c3 };
 
             var config = new EvolutionConfig()
             {

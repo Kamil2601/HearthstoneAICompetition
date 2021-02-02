@@ -9,26 +9,31 @@ namespace Thesis.Evolution.Models
         public int Size { get; }
         public int Minions { get; }
         public int Spells { get; }
-        public Population(int size, int minions, int spells, bool init = true): base()
+        public Population(PopulationConfig config): base()
         {
-            this.Spells = spells;
-            this.Minions = minions;
-            this.Size = size;
+            this.Spells = config.Spells;
+            this.Minions = config.Minions;
+            this.Size = config.Size;
 
-            if (init)
+            if (config.Chromosomes != null)
+            {
+                AddRange(config.Chromosomes);
+            }
+
+            if (config.Init)
                 RandomInitialize();
         }
 
-        public Population(Population population, bool copy = false): 
-            this(population.Size, population.Minions, population.Spells, false)
-        {
-            if (copy)
-                AddRange(population);
-        }
+        // public Population(Population population, bool copy = false): 
+        //     this(population.Size, population.Minions, population.Spells, false)
+        // {
+        //     if (copy)
+        //         AddRange(population);
+        // }
 
         private void RandomInitialize()
         {
-            for (int i=0; i<Size; i++)
+            for (int i=Count; i<Size; i++)
                 Add(new Chromosome(Minions, Spells, true));
         }
 

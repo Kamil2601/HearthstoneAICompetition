@@ -17,8 +17,15 @@ namespace Thesis.Evolution.Selections
 
         public Population Select(Population population)
         {
-            var result = new Population(population.Size,
-                population.Minions, population.Spells, false);
+            var config = new PopulationConfig()
+            {
+                Size = population.Size,
+                Minions = population.Minions,
+                Spells = population.Spells,
+                Init = false
+            };
+
+            var result = new Population(config);
 
             var count = population.Count;
 

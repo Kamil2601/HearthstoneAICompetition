@@ -63,9 +63,9 @@ namespace Thesis.Evolution
 
         private void InitializePopulation()
         {
-            Population = new Population(populationSize, Minions.Count, Spells.Count);
-            Evaluate();
-            Export.Export(Population, Generation);
+            // Population = new Population(populationSize, Minions.Count, Spells.Count);
+            // Evaluate();
+            // Export.Export(Population, Generation);
 
         }
 

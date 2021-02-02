@@ -36,7 +36,15 @@ namespace Thesis.Evolution
 
         private Population NextGeneration(List<List<Chromosome>> sorted)
         {
-            var result = new Population(Population.Size, Minions.Count, Spells.Count, false);
+            PopulationConfig config= new PopulationConfig()
+            {
+                Size = Population.Size,
+                Minions = Minions.Count,
+                Spells = Spells.Count,
+                Init = false
+            };
+
+            var result = new Population(config);
 
             foreach (var front in sorted)
             {

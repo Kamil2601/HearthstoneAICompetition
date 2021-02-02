@@ -42,12 +42,25 @@ namespace Thesis
                 CrossoverRate = 1
             };
 
+            var baseChromosome = new Chromosome(22, 13);
+            var bestChromosome = new Chromosome("(22, 13);[-1,0,2,-3,2,1,-2,-2,-3,-3,-3,2,-2,3,-1,2,1,1,-2,-3,-3,2,0,-1,-2,-2,2,2,-1,0,1,-3,2,-1,1,-1,-2,2,-2,1,0,-2,2,1,0,0,-3,0,2,1,-3,1,0,0,2,-1,-3,-1,-1,0,-3,1,1,-2,-2,1,-3,1,2,-3,1,1,-1,0,0,1,2,-3,2]");
+
+
+
+            PopulationConfig populationConfig = new PopulationConfig()
+            {
+                Size = 50,
+                Minions = 22,
+                Spells = 13,
+                Chromosomes = new List<Chromosome>() { baseChromosome, bestChromosome }
+            };
+
             var config = new EvolutionConfig()
             {
                 Players = PlayersList.Experiments,
                 Evaluation = new Tournament(),
                 Offspring = offspring,
-                Export = new PopulationExport("nsga2-score.csv", "nsga2-population.csv")
+                Export = new PopulationExport("nsga2-score.csv", "nsga2-population.csv"),
             };
 
             NSGA2 nSGA2 = new NSGA2(config);
@@ -97,20 +110,27 @@ namespace Thesis
             {
                 GamesForMatchup = 500
             };
+            
+            PopulationConfig config = new PopulationConfig()
+            {
+                Size = 11,
+                Minions = 22,
+                Spells = 13
+            };
 
-            Population population = new Population(11, 22, 13, false);
+            Population population = new Population(config);
 
             population.AddRange(chromosomes);
             Offspring offspring = new Offspring();
 
-            var config = new EvolutionConfig()
+            var eConfig = new EvolutionConfig()
             {
                 Population = population,
                 Offspring = new Offspring(),
                 Evaluation = tournament
             };
 
-            BaseEvolution evolution = new BaseEvolution(config);
+            BaseEvolution evolution = new BaseEvolution(eConfig);
 
             evolution.Evaluate();
         }
