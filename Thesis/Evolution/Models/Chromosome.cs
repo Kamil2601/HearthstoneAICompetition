@@ -106,9 +106,10 @@ namespace Thesis.Evolution.Models
         public override string ToString()
         {
             var m = Magnitude;
+            var nm = NormalizedMagnitude;
 
             string genes = String.Join(",",Genes.Select(g => g.ToString()));
-            return $"({minions}, {spells});[{genes}];{Balance};{m}";
+            return $"({minions}, {spells});[{genes}];{Balance};{m};{nm}";
         }
     }
 }
