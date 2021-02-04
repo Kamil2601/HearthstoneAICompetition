@@ -238,10 +238,10 @@ namespace SabberStoneCore.Model
 			_oopIndex = oop;
 		}
 
-		///// <summary>
-		///// Gets the dictionary containing all generated entities for this game.
-		///// </summary>
-		///// <value><see cref="IPlayable"/></value>
+		/// <summary>
+		/// Gets the dictionary containing all generated entities for this game.
+		/// </summary>
+		/// <value><see cref="IPlayable"/></value>
 		public EntityList IdEntityDic { get; private set; }
 
 		/// <summary>

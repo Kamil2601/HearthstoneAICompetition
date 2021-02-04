@@ -30,8 +30,6 @@ namespace Thesis.Evolution
                     populationSize = value;
             }
         }
-        Random random = new Random();
-
 
         public PopulationExport Export { get; protected set; }
 
@@ -47,8 +45,10 @@ namespace Thesis.Evolution
 
             InitializeCards();
 
-            if (Players != null && Population == null)
-                InitializePopulation();
+            Console.WriteLine($"Generation {Generation}");
+            Evaluate();
+            Export.Export(Population, Generation);
+
 
             populationSize = Population.Size;
         }
@@ -59,14 +59,6 @@ namespace Thesis.Evolution
 
             Minions = cardSet.Minions;
             Spells = cardSet.Spells;
-        }
-
-        private void InitializePopulation()
-        {
-            // Population = new Population(populationSize, Minions.Count, Spells.Count);
-            // Evaluate();
-            // Export.Export(Population, Generation);
-
         }
 
         public virtual void Evolve(int generations = 1)

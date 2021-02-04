@@ -21,7 +21,6 @@ namespace Thesis
         static void Main(string[] args)
         {
             RunNSGA2();
-
         }
 
         private static void DeckTournament()
@@ -58,10 +57,15 @@ namespace Thesis
 
             Population population = new Population(populationConfig);
 
+            Console.WriteLine(population.Count);
+
             var config = new EvolutionConfig()
             {
                 Players = PlayersList.Experiments,
-                Evaluation = new Tournament(),
+                Evaluation = new Tournament()
+                {
+                    GamesForMatchup = 50
+                },
                 Offspring = offspring,
                 Export = new PopulationExport("nsga2-score.csv", "nsga2-population.csv"),
                 Population = population

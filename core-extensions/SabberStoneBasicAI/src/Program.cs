@@ -42,14 +42,7 @@ namespace SabberStoneBasicAI
 			// MyTest();
 
 			// OneTurn();
-			Stopwatch stopwatch = new Stopwatch();
-			stopwatch.Start();
 			FullGame();
-			stopwatch.Stop();
-
-			TimeSpan time = stopwatch.Elapsed;
-
-			Console.WriteLine(time);
 			// RandomGames();
 			// TestFullGames();
 
