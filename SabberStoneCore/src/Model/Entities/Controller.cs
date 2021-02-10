@@ -62,6 +62,20 @@ namespace SabberStoneCore.Model.Entities
 		/// </summary>
 		public GraveyardZone GraveyardZone;
 
+		public bool Played(Card card)
+		{
+			return BoardZone.Any(minion => minion.Card == card) ||
+				GraveyardZone.Any(playable => playable.Card == card) ||
+				Hero.HasWeapon(card) ||
+				SecretZone.Any(spell => spell.Card == card);
+		}
+
+		public bool Drew(Card card)
+		{
+			return Played(card) ||
+				HandZone.Any(playable => playable.Card == card);
+		}
+
 		/// <summary>
 		/// The zone containing all played secrets by this player. Can be empty.
 		/// </summary>

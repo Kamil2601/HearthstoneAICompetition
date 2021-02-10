@@ -6,6 +6,7 @@ using System.Linq;
 using SabberStoneBasicAI.Score;
 using SabberStoneCore.Enums;
 using SabberStoneCore.Model;
+using Thesis.CardNerf;
 using Thesis.CompareDecks;
 using Thesis.Data;
 using Thesis.Evolution;
@@ -20,7 +21,17 @@ namespace Thesis
     {
         static void Main(string[] args)
         {
-            RunNSGA2();
+            // RunNSGA2();
+
+            RunCardNerf();
+        }
+
+        private static void RunCardNerf()
+        {
+            WinRates winRates = new WinRates();
+
+            winRates.CalculateStats();
+            winRates.CalculateNerfStats();
         }
 
         private static void DeckTournament()
@@ -43,8 +54,6 @@ namespace Thesis
 
             var baseChromosome = new Chromosome(22, 13);
             var bestChromosome = new Chromosome("(22, 13);[-1,0,2,-3,2,1,-2,-2,-3,-3,-3,2,-2,3,-1,2,1,1,-2,-3,-3,2,0,-1,-2,-2,2,2,-1,0,1,-3,2,-1,1,-1,-2,2,-2,1,0,-2,2,1,0,0,-3,0,2,1,-3,1,0,0,2,-1,-3,-1,-1,0,-3,1,1,-2,-2,1,-3,1,2,-3,1,1,-1,0,0,1,2,-3,2]");
-
-
 
             PopulationConfig populationConfig = new PopulationConfig()
             {

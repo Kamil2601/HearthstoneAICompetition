@@ -89,6 +89,21 @@ namespace SabberStoneCore.Model
 		private int baseHealth;
 		private int baseCost;
 
+		public void ResetAttributes()
+		{
+			ATK = baseAtk;
+			Cost = baseCost;
+
+			if (Tags.ContainsKey(GameTag.DURABILITY))
+			{
+				Tags[GameTag.DURABILITY] = baseHealth;
+			}
+			else
+			{
+				Health = baseHealth;
+			}
+		}
+
 		public void ChangeAttributes(int costChange, int healthChange = 0, int atkChange = 0)
 		{
 			Cost = Math.Max(0, baseCost + costChange);

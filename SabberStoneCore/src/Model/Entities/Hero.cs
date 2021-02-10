@@ -133,6 +133,14 @@ namespace SabberStoneCore.Model.Entities
 			EquippedWeapon = 0;
 		}
 
+		public bool HasWeapon(Card card)
+		{
+			if (Weapon == null)
+				return false;
+
+			return Weapon.Card == card;
+		}
+
 		public override IPlayable Clone(in Controller controller)
 		{
 			return new Hero(in controller, this);

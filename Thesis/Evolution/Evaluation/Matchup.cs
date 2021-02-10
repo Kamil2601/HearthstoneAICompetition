@@ -48,7 +48,7 @@ namespace Thesis.Evolution.Evaluation
         }
 
 
-        public void PlayGame()
+        public Game Play()
         {
             var game = new Game(gameConfig);
 
@@ -104,7 +104,12 @@ namespace Thesis.Evolution.Evaluation
 
             GamesPlayed++;
 
+            return game;                
+        }
 
+        public void PlayGame()
+        {
+            var game = Play();
 
             if (game.Player1.PlayState == PlayState.WON)
             {
@@ -116,7 +121,6 @@ namespace Thesis.Evolution.Evaluation
                 P2Wins++;
                 // Console.WriteLine($"Winner: {Player2.Name}");
             }
-                
         }
 
         public void PlayMatchup()
