@@ -28,6 +28,8 @@ namespace Thesis
 
         private static void RunCardNerf()
         {
+            Console.WriteLine("Card nerf");
+
             WinRates winRates = new WinRates();
 
             winRates.CalculateStats();
