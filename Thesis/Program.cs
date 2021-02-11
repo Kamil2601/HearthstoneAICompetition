@@ -137,6 +137,8 @@ namespace Thesis
             {
                 GamesForMatchup = 500
             };
+
+            Console.WriteLine(tournament.GamesForMatchup);
             
             PopulationConfig config = new PopulationConfig()
             {
@@ -155,6 +157,7 @@ namespace Thesis
                 Population = population,
                 Offspring = new Offspring(),
                 Evaluation = tournament,
+                Players = PlayersList.Experiments
             };
 
             BaseEvolution evolution = new BaseEvolution(eConfig);

@@ -47,7 +47,7 @@ namespace Thesis.Evolution
 
             Console.WriteLine($"Generation {Generation}");
             Evaluate();
-            Export.Export(Population, Generation);
+            // Export.Export(Population, Generation);
 
 
             populationSize = Population.Size;
@@ -89,6 +89,11 @@ namespace Thesis.Evolution
                 }
 
                 Console.WriteLine(chromosome);
+
+                using (StreamWriter file = new StreamWriter("nsga2-eval.csv", true))
+                {
+                    file.WriteLine(chromosome);
+                }
             }
         }
 
