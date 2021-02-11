@@ -23,7 +23,8 @@ namespace Thesis
         {
             // RunNSGA2();
 
-            RunCardNerf();
+            // RunCardNerf();
+            EvaluateBestChromosomes();
         }
 
         private static void RunCardNerf()
@@ -108,22 +109,29 @@ namespace Thesis
 
             HashSet<string> strs = new HashSet<string>();
 
-            using (StreamReader file = new StreamReader("results/BaseEvolution/Chromosomes-sorted.csv"))
+            using (StreamReader file = new StreamReader("results/nsga2-best.csv"))
             {
-                while (strs.Count < 10)
+                while (true)
                 {
                     var str = file.ReadLine();
+
+                    if (str == null)
+                        break;
 
                     strs.Add(str);
                 }
             }
 
-            List<Chromosome> chromosomes = new List<Chromosome>
-            {
-                new Chromosome(22, 13, false)
-            };
+            List<Chromosome> chromosomes = new List<Chromosome>();
 
             chromosomes.AddRange(strs.Select(c => new Chromosome(c)));
+
+            int size = chromosomes.Count;
+
+            foreach (var c in chromosomes)
+            {
+                Console.WriteLine(c);
+            }
 
             var tournament = new Tournament()
             {
@@ -132,7 +140,7 @@ namespace Thesis
             
             PopulationConfig config = new PopulationConfig()
             {
-                Size = 11,
+                Size = size,
                 Minions = 22,
                 Spells = 13
             };
@@ -146,7 +154,7 @@ namespace Thesis
             {
                 Population = population,
                 Offspring = new Offspring(),
-                Evaluation = tournament
+                Evaluation = tournament,
             };
 
             BaseEvolution evolution = new BaseEvolution(eConfig);

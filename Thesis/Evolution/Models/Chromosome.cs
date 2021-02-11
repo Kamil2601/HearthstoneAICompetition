@@ -77,6 +77,8 @@ namespace Thesis.Evolution.Models
             minions = Convert.ToInt32(cards[0]);
             spells = Convert.ToInt32(cards[1]);
 
+            maxMagnitude = 2*3*(minions+spells)+2*3*minions;
+
             var geneStr = split[1];
 
             var genes = geneStr.Remove(geneStr.Length-1, 1).Remove(0, 1).Split(",");
