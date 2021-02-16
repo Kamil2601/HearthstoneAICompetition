@@ -68,7 +68,7 @@ namespace Thesis.Evolution
             return result;
         }
 
-        public List<List<Chromosome>> NonDominatedSort(Population population)
+        public List<List<Chromosome>> NonDominatedSort(List<Chromosome> population)
         {
             var result = new List<List<Chromosome>>();
 

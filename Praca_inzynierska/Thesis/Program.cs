@@ -21,10 +21,9 @@ namespace Thesis
     {
         static void Main(string[] args)
         {
+            // RunExperiment1();
             // RunNSGA2();
-
-            // RunCardNerf();
-            EvaluateBestChromosomes();
+            RunCardNerf();
         }
 
         private static void RunCardNerf()

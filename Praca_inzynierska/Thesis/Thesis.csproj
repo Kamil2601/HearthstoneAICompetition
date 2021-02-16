@@ -1,8 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="..\SabberStoneCore\SabberStoneCore.csproj" />
-    <ProjectReference Include="..\core-extensions\SabberStoneBasicAI\SabberStoneAICompetition.csproj" />
+    <ProjectReference Include="..\..\SabberStoneCore\SabberStoneCore.csproj" />
+    <ProjectReference Include="..\..\core-extensions\SabberStoneBasicAI\SabberStoneAICompetition.csproj" />
   </ItemGroup>
 
   <PropertyGroup>
