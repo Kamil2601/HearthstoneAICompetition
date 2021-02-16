@@ -30,8 +30,6 @@ namespace Thesis.CardNerf
         public int GamesForMatchup { get; set; } = 1000;
         public int MaxDepth { get; set; } = 10;
         public int MaxWidth { get; set; } = 40;
-        public string WinRateResulstsFile { get; set; }
-        public string NerfResultsFile { get; set; }
         public int Games { get; set; }
         public int Wins { get; set; }
         public double WinRate => (double)Wins/(double)Games;

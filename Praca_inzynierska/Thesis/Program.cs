@@ -21,9 +21,9 @@ namespace Thesis
     {
         static void Main(string[] args)
         {
-            // RunExperiment1();
+            // RunBaseEvolution();
             // RunNSGA2();
-            RunCardNerf();
+            // RunCardNerf();
         }
 
         private static void RunCardNerf()
@@ -87,13 +87,14 @@ namespace Thesis
             nSGA2.Evolve(40);
         }
 
-        static void RunExperiment1()
+        static void RunBaseEvolution()
         {
             var config = new EvolutionConfig()
             {
                 Players = PlayersList.Experiments,
                 Evaluation = new Tournament(),
-                Offspring = new Offspring()
+                Offspring = new Offspring(),
+                Export = new PopulationExport("base-score.csv", "base-population.csv")
             };
 
             BaseEvolution evolution = new BaseEvolution(config);
